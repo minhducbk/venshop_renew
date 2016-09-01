@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901012321) do
+ActiveRecord::Schema.define(version: 20160901100911) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id",    limit: 4
@@ -21,11 +21,16 @@ ActiveRecord::Schema.define(version: 20160901012321) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+  add_index "cart_items", ["item_id"], name: "index_cart_items_on_item_id", using: :btree
+
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -45,6 +50,8 @@ ActiveRecord::Schema.define(version: 20160901012321) do
     t.string   "image_url",   limit: 255
   end
 
+  add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
+
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
     t.integer  "item_id",    limit: 4
@@ -53,12 +60,17 @@ ActiveRecord::Schema.define(version: 20160901012321) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "status",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",      limit: 255
