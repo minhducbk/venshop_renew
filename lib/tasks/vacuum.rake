@@ -1,18 +1,16 @@
 task :vacuum => :environment do
-  require 'pry'
-  request = Vacuum.new('GB')
+  request = Vacuum.new('US')
   request.configure(
       aws_access_key_id: 'AKIAIAJR65JO6EIPQWTA',
       aws_secret_access_key: '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',
       associate_tag: 'microv'
   )
-  request.version = '2016-08-31'
+  request.version = Time.now.in_time_zone('Hanoi').strftime("%Y-%m-%d")
 
   categories = Category.all
   categories.each do |category|
-    number_item_remain = 100
     item_page = 1
-    while number_item_remain > 0
+    10.times do
       begin
         response = request.item_search(
           query: {
@@ -20,26 +18,30 @@ task :vacuum => :environment do
               'Keywords' => category.keyword,
               'ResponseGroup' => "ItemAttributes,Images",
               'ItemPage' => item_page
-          }
+          },
+          persistent: true
         )
         hashed_products = response.to_h
-        #binding.pry
         hashed_products['ItemSearchResponse']['Items']['Item'].each do |item|
-          if (item['ItemAttributes']['ListPrice'] &&
-            (item['LargeImage'] || item['SmallImage'] || item['MediumImage']))
-
+          if item['ItemAttributes']['ListPrice'].present?
             price = item['ItemAttributes']['ListPrice']['FormattedPrice'][1..-1].to_f
-            #binding.pry
+            stock = item['ItemAttributes']['ListPrice']['Amount'].to_i
+          else
+            price = Random.new.rand(500.0).to_f.round(2)
+            stock = Random.new.rand(500).to_i
+          end
+
+          if (item['LargeImage'].present? || item['SmallImage'].present? || item['MediumImage'].present?)
             image_url ||= item['LargeImage']['URL']
             image_url ||= item['MediumImage']['URL']
             image_url ||= item['SmallImage']['URL']
-
-            Item.create(name: item['ItemAttributes']['Title'], price: price,
-              amazon_id: item['ASIN'], image_url: image_url,
-              stock: item['ItemAttributes']['ListPrice']['Amount'].to_i,
-              category_id: category.id)
-            number_item_remain -= 1
+          else
+            image_url = "https://www.pantasy.jp/wp-content/uploads/2014/12/no_image3.jpg"
           end
+
+          Item.create(name: item['ItemAttributes']['Title'], price: price,
+            amazon_id: item['ASIN'], image_url: image_url,
+            stock: stock, category_id: category.id)
         end
       rescue
         break
@@ -47,62 +49,4 @@ task :vacuum => :environment do
       item_page += 1
     end
   end
-
-  # response = request.item_search(
-  #   query: {
-  #       'SearchIndex' => 'Video',
-  #       'Keywords' => 'Video',
-  #       'ResponseGroup' => "ItemAttributes,Images",
-  #        'ItemPage' => 10
-  #   }
-  # )
-
-  # response = request.item_search(
-  #   query: {
-  #       'SearchIndex' => 'Electronics',
-  #       'Keywords' => 'Electronics',
-  #       'ResponseGroup' => "ItemAttributes,Images",
-  #       'ItemPage' => 9
-  #   }
-  # )
-
-  # response = request.item_lookup(
-  #   query: {
-  #     'ItemId' => 'B00I08L864'
-  #   }
-  # )
-
-  # hashed_products = response.to_h
-
-  # products = []
-
-  # hashed_products['ItemSearchResponse']['Items']['Item'].each do |item|
-  #   if item['ItemAttributes']['ListPrice'] && item['LargeImage']
-  #     product = OpenStruct.new
-  #     product.name = item['ItemAttributes']['Title']
-  #     product.price = item['ItemAttributes']['ListPrice']['FormattedPrice']
-  #     product.image_url = item['LargeImage']['URL']
-  #     product.amazon_id = item['ASIN']
-  #     products << product
-  #   end
-  # end
-
-  # puts response.to_h['ItemSearchResponse']['Items']['Item'].collect{|i|
-  #   i.keys  if i['ItemAttributes']['ListPrice']
-  # }
-
-  # # puts response.to_h['ItemSearchResponse']['Items']['Item'].collect{|i|
-  # #   i['ASIN'] if i['ItemAttributes']['ListPrice']
-  # # }
-
-  # puts response.to_h['ItemSearchResponse']['Items']['Item'].collect{|i|
-  #   i['ItemAttributes']['PackageQuantity'] if i['ItemAttributes']['ListPrice']
-  # }
-
-
-  # puts response.to_h['ItemSearchResponse']['Items']['Item'].collect{|i|
-  #   i['ItemAttributes']['ListPrice']['Amount'] if i['ItemAttributes']['ListPrice']
-  # }
-
-  # p response.to_h["ItemLookupResponse"]['Items']['Item']['ItemAttributes']['Title']
 end
