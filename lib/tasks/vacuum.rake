@@ -1,4 +1,3 @@
-
 task :vacuum => :environment do
   require 'pry'
   request = Vacuum.new('GB')
@@ -8,6 +7,7 @@ task :vacuum => :environment do
       associate_tag: 'microv'
   )
   request.version = '2016-08-31'
+
   categories = Category.all
   categories.each do |category|
     number_item_remain = 100
@@ -18,7 +18,6 @@ task :vacuum => :environment do
           query: {
               'SearchIndex' => category.name,
               'Keywords' => category.keyword,
-              #'MinimumPrice' => '$1',
               'ResponseGroup' => "ItemAttributes,Images",
               'ItemPage' => item_page
           }
@@ -28,11 +27,13 @@ task :vacuum => :environment do
         hashed_products['ItemSearchResponse']['Items']['Item'].each do |item|
           if (item['ItemAttributes']['ListPrice'] &&
             (item['LargeImage'] || item['SmallImage'] || item['MediumImage']))
+
             price = item['ItemAttributes']['ListPrice']['FormattedPrice'][1..-1].to_f
             #binding.pry
             image_url ||= item['LargeImage']['URL']
             image_url ||= item['MediumImage']['URL']
             image_url ||= item['SmallImage']['URL']
+
             Item.create(name: item['ItemAttributes']['Title'], price: price,
               amazon_id: item['ASIN'], image_url: image_url,
               stock: item['ItemAttributes']['ListPrice']['Amount'].to_i,
@@ -40,18 +41,19 @@ task :vacuum => :environment do
             number_item_remain -= 1
           end
         end
-
       rescue
         break
       end
       item_page += 1
     end
   end
+
   # response = request.item_search(
   #   query: {
   #       'SearchIndex' => 'Video',
   #       'Keywords' => 'Video',
-  #       'ResponseGroup' => "ItemAttributes,Images"
+  #       'ResponseGroup' => "ItemAttributes,Images",
+  #        'ItemPage' => 10
   #   }
   # )
 
