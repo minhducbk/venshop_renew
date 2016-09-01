@@ -1,5 +1,4 @@
 task :vacuum => :environment do
-  require 'pry'
   request = Vacuum.new('US')
   request.configure(
       aws_access_key_id: 'AKIAIAJR65JO6EIPQWTA',
