@@ -1,9 +1,10 @@
 task :vacuum => :environment do
+  Settings.reload!
   request = Vacuum.new('US')
   request.configure(
-      aws_access_key_id: 'AKIAIAJR65JO6EIPQWTA',
-      aws_secret_access_key: '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',
-      associate_tag: 'microv'
+    aws_access_key_id: ENV['aws_access_key_id'],
+    aws_secret_access_key: ENV['aws_secret_access_key'],
+    associate_tag: ENV['associate_tag']
   )
   request.version = Time.now.in_time_zone('Hanoi').strftime("%Y-%m-%d")
   categories = Category.all
@@ -13,10 +14,10 @@ task :vacuum => :environment do
       begin
         response = request.item_search(
           query: {
-              'SearchIndex' => category.name,
-              'Keywords' => category.keyword,
-              'ResponseGroup' => "ItemAttributes,Images",
-              'ItemPage' => item_page
+            'SearchIndex' => category.name,
+            'Keywords' => category.keyword,
+            'ResponseGroup' => "ItemAttributes,Images",
+            'ItemPage' => item_page
           },
           persistent: true
         )
@@ -35,12 +36,17 @@ task :vacuum => :environment do
             image_url ||= item['MediumImage']['URL']
             image_url ||= item['SmallImage']['URL']
           else
-            image_url = "https://www.pantasy.jp/wp-content/uploads/2014/12/no_image3.jpg"
+            image_url = Settings.no_image_link
           end
 
-          Item.create(name: item['ItemAttributes']['Title'], price: price,
-            amazon_id: item['ASIN'], image_url: image_url,
-            stock: stock, category_id: category.id)
+          Item.create(
+            name: item['ItemAttributes']['Title'],
+            price: price,
+            amazon_id: item['ASIN'],
+            image_url: image_url,
+            stock: stock,
+            category_id: category.id
+          )
         end
       rescue
         break
