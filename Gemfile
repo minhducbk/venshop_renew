@@ -15,6 +15,7 @@ gem "figaro"
 gem 'config'
 gem 'masonry-rails'
 gem 'kaminari'
+gem "paperclip", "~> 5.0.0"
 
 group :development, :test do
   gem 'byebug'

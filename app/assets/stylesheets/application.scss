@@ -16,3 +16,15 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+#errors{
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: #f2dede;
+  font-family: Time New Romans;
+  font-weight: bold;
+  color: red;
+  margin: auto;
+  padding: 5px;
+}
