@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :carts, dependent: :destroy
   has_many :orders, dependent: :destroy
+  enum role_user: { admin: 0, customer: 1 }
 end
