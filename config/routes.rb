@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post   '/items(.:format)' => 'items#create', as: :item
   get    '/items/new(.:format)' => 'items#new', as: :new_item
 
+  post   '/carts(.:format)' => 'carts#create', as: :cart
 
   resources :categories do
     get '/items/:id(.:format)' => 'items#show', as: :item

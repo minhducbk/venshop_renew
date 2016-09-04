@@ -34,7 +34,7 @@
         <%= @item.description%>
       </div>
       <div class = "row">
-        <%= render "items/add_to_cart" %>
+        <%= render "items/add_to_cart", {stock: @item.stock, item_id: @item.id} %>
       </div>
     </div>
   </div>

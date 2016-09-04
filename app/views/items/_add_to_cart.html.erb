@@ -1,1 +1,14 @@
-<%= link_to "Add to cart", root_path, class: "btn btn-primary" %>
+<div>
+  <%= form_for(:add_to_cart, url: cart_path, method: :post) do |f| %>
+    <div class="field">
+      <%= f.label :quantity %><br />
+      <%= f.select :quantity, 1..stock, autocomplete: "off", class: 'form-control' %>
+      <%= f.hidden_field :item_id, value: item_id%>
+    </div>
+
+    <div class="actions">
+      <br />
+      <%= f.submit "Add to cart", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
