@@ -1,0 +1,10 @@
+<div class = "row ">
+  <div class = "header_catalog col-md-offset-0 col-md-5 ">
+    Category
+  </div>
+</div>
+<% categories.each do |category| %>
+  <div class = "row">
+    <p> <%= link_to category.name, category_path(category.id) %> </p>
+  </div>
+<% end %>

@@ -13,6 +13,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem "figaro"
 gem 'config'
+gem 'masonry-rails'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'

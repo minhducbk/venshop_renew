@@ -1,0 +1,38 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-offset-0 col-md-4">
+      <%= link_to "Home", root_path%> > <%= link_to @item.category.name, category_path(@item.category.id)%>
+      > Items ID <%= @item.id%>
+    </div>
+  </div>
+  <br />
+  <div class = "row">
+    <div class = "col-md-offset-0 col-md-3">
+      <%= render "categories/catalog", { categories: @categories}%>
+    </div>
+    <div class = "col-md-offset-0 col-md-9">
+      <div class = "row">
+        <div class = "col-md-offset-0 col-md-3">
+          <img src = "<%= @item.image_url%>" height = "110px" width = "86px">
+        </div>
+        <div class = "col-md-offset-0 col-md-9">
+          <div class = "row">
+            Item ID: <%= @item.id%>
+          </div>
+          <div class = "row">
+            Price: $<%= @item.price%>
+          </div>
+          <div class = "row">
+            Date: <%= @item.updated_at.strftime("%Y-%m-%d")%>
+          </div>
+        </div>
+      </div>
+      <div class = "row discription">
+        This is discription
+      </div>
+      <div class = "row">
+
+      </div>
+    </div>
+  </div>
+</div>

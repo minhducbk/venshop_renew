@@ -55,3 +55,16 @@ task :vacuum => :environment do
     end
   end
 end
+
+        response = request.item_search(
+          query: {
+            'SearchIndex' => "Software",
+            'Keywords' => "New",
+            'ResponseGroup' => "ItemAttributes,Images",
+            'ItemPage' => 9
+          }
+        )
+
+puts response.to_h['ItemSearchResponse']['Items']['Item'].collect do |item|
+  item['ItemAttributes'] if item['ItemAttributes']['ListPrice']
+end
