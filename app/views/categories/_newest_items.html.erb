@@ -8,7 +8,8 @@
   <% newest_items.each do |item| %>
     <div class = "row">
       <img src = "<%= item.image_url%>" height = "71px" width = "38px">
-      <%= item.name %> <strong> Price </strong>: $<%= item.price%>
+      <%= link_to item.name, category_item_path(item.category.id, item.id) %>
+      <strong> Price </strong>: $<%= item.price%>
     </div>
     <br />
   <% end %>

@@ -27,11 +27,13 @@
           </div>
         </div>
       </div>
-      <div class = "row discription">
-        This is discription
+      <div class = "row description">
+        <strong>Description</strong>:
+        <br />
+        <%= @item.description%>
       </div>
       <div class = "row">
-
+        <%= render "items/add_to_cart" %>
       </div>
     </div>
   </div>

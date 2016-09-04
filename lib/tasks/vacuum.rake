@@ -11,7 +11,6 @@ task :vacuum => :environment do
   categories.each do |category|
     item_page = 1
     10.times do
-      begin
         response = request.item_search(
           query: {
             'SearchIndex' => category.name,
@@ -38,33 +37,24 @@ task :vacuum => :environment do
           else
             image_url = Settings.no_image_link
           end
-
-          Item.create(
+          description = ""
+          if item['ItemAttributes']["Feature"].present?
+            description = item['ItemAttributes']["Feature"].is_a?(Array) ?
+              item['ItemAttributes']["Feature"].inject{|description,s| description + "\n" + s} :
+              item['ItemAttributes']["Feature"]
+          end
+          Item.create!(
             name: item['ItemAttributes']['Title'],
             price: price,
             amazon_id: item['ASIN'],
             image_url: image_url,
             stock: stock,
-            category_id: category.id
+            category_id: category.id,
+            description: description
           )
+
         end
-      rescue
-        break
-      end
       item_page += 1
     end
   end
-end
-
-        response = request.item_search(
-          query: {
-            'SearchIndex' => "Software",
-            'Keywords' => "New",
-            'ResponseGroup' => "ItemAttributes,Images",
-            'ItemPage' => 9
-          }
-        )
-
-puts response.to_h['ItemSearchResponse']['Items']['Item'].collect do |item|
-  item['ItemAttributes'] if item['ItemAttributes']['ListPrice']
 end
