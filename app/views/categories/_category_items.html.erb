@@ -7,7 +7,8 @@
 <div class = "recommened_list col-md-offset-2">
   <% items.each do |item| %>
     <div class = "row">
-      <img src = "<%= item.image_url%>" height = "71px" width = "38px"> &nbsp &nbsp
+      <img src = "<%= item.image_url.present? ? item.image_url : item.image.url %>"
+      height = "71px" width = "38px"> &nbsp &nbsp
       <%= link_to item.name, category_item_path(item.category.id, item.id) %>
       <strong> Price </strong>: $<%= item.price%>
     </div>
