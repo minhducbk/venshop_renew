@@ -1,8 +1,24 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-        registrations: 'users/registrations'
-  }
+  require 'sidekiq/web'
+  mount Sidekiq::Web => "/sidekiq"
 
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+  post   '/items(.:format)' => 'items#create', as: :item
+  get    '/items/new(.:format)' => 'items#new', as: :new_item
+
+  post   '/carts(.:format)' => 'carts#create', as: :cart
+  get '/carts/(.:format)' => 'carts#show'
+  delete '/carts/(.:format)' => 'carts#destroy'
+
+  resources :orders
+
+  resources :categories do
+    get '/items/:id(.:format)' => 'items#show', as: :item
+  end
+  root 'categories#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -19,15 +35,6 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  post   '/items(.:format)' => 'items#create', as: :item
-  get    '/items/new(.:format)' => 'items#new', as: :new_item
-
-  post   '/carts(.:format)' => 'carts#create', as: :cart
-
-  resources :categories do
-    get '/items/:id(.:format)' => 'items#show', as: :item
-  end
-  root 'categories#index'
   # Example resource route with options:
   #   resources :products do
   #     member do

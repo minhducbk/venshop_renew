@@ -9,6 +9,10 @@
           <li>
             <% if current_user.role ==  User.role_users[:admin] %>
               <%= link_to "Post Item", new_item_path %>
+            <% else %>
+              <% if @cart.present? %>
+                <%= render "layouts/cart", {cart: @cart}%>
+              <% end %>
             <% end %>
           </li>
           <li>
@@ -25,6 +29,9 @@
         </li>
       <% else %>
         <ul class="nav navbar-nav navbar-right nav-custom">
+          <li>
+            <%= render "layouts/cart", {cart: @cart}%>
+          </li>
           <li>
             <%= link_to "Login", new_user_session_path%>
           </li>

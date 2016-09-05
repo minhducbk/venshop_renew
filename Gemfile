@@ -16,6 +16,9 @@ gem 'config'
 gem 'masonry-rails'
 gem 'kaminari'
 gem "paperclip", "~> 5.0.0"
+gem 'sidekiq'
+gem 'sinatra'
+gem 'redis-rails'
 
 group :development, :test do
   gem 'byebug'

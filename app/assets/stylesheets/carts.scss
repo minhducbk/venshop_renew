@@ -1,3 +1,33 @@
-// Place all the styles related to the Carts controller here.
+// Place all the styles related to the carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.price{
+  color: #b12704!important;
+  font-weight: 700!important;
+}
+
+.quantity{
+  text-align: center;
+}
+
+.subtotal{
+}
+
+.checkout{
+  background: #f0c14b;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
+  color: #111;
+  box-sizing: border-box;
+  margin-top: 25px;
+  margin-left: 15px;
+}
+
+.checkout2{
+  background: #f0c14b;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
+  color: #111;
+  box-sizing: border-box;
+  margin-top: 25px;
+  margin-left: 110px;
+}

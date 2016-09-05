@@ -43,7 +43,7 @@ task :vacuum => :environment do
               item['ItemAttributes']["Feature"].inject{|description,s| description + "\n" + s} :
               item['ItemAttributes']["Feature"]
           end
-          Item.create!(
+          item_save = Item.new(
             name: item['ItemAttributes']['Title'],
             price: price,
             amazon_id: item['ASIN'],
@@ -52,7 +52,7 @@ task :vacuum => :environment do
             category_id: category.id,
             description: description
           )
-
+          item_save.save(validate: false)
         end
       item_page += 1
     end
