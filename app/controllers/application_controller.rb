@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :get_categories
   before_action :get_cart
   include CartsHelper
+  include OrdersHelper
 
   private
   def get_categories

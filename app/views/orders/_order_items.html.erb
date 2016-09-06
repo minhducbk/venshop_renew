@@ -1,9 +1,8 @@
 <div class = "row">
   <div class = "header_catalog col-md-offset-0 col-md-12 ">
-    Shopping Cart
+    <%= "Order #{order.id}"%>
   </div>
 </div>
-
 <div class = "recommened_list col-md-offset-1 col-md-9">
   <div class = "row">
     <div class = "col-offset-0 col-md-7">
@@ -16,7 +15,7 @@
     </div>
   </div>
   <hr/>
-  <% cart_items.each do |record| %>
+  <% order_items.each do |record| %>
     <div class = "row">
       <div class = "col-offset-0 col-md-1">
         <%= link_to({controller: "items", action:"show", category_id: record[0].category.id, id: record[0].id}) do %>
@@ -27,10 +26,6 @@
       <div class = "col-offset-0 col-md-6">
         <div>
           <%= link_to record[0].name, category_item_path(record[0].category.id, record[0].id) %>
-        </div>
-        <br />
-        <div>
-          <%= link_to "Delete", cart_path(item_id: record[0].id), method: :delete %>
         </div>
       </div>
       <div class = "col-offset-0 col-md-3">
@@ -52,18 +47,31 @@
     </div>
   </div>
 
+  <br />
   <div class = "row">
-    <div class = "col-offset-0 col-md-7">
+    <div class = "col-offset-0 col-md-8">
     </div>
-    <div class = "col-offset-1 col-md-5">
-      <% if cart_items.present? %>
-        <% if user_signed_in? %>
-          <%= link_to "Checkout", orders_path, method: :post, class: "btn checkout2",
-            data: { confirm: 'Are you sure?' } %>
-        <% else %>
-          <%= link_to "Proceed to checkout", new_user_session_path, class: "btn checkout"%>
+    <% if @is_admin %>
+      <div class = "col-offset-0 col-md-4">
+        <%= form_for(:update_order, url: order_path(order.id), method: :patch) do |f| %>
+          <div class="field">
+            <%= f.label :status%>:
+            <%= f.select :status, [:New, :Prepare, :Shipping, :Done, :Cancel],
+            selected: Order.order_statuses.key(order.status), class: 'form-control' %>
+          </div>
+          <div class="update-btn">
+            <br />
+            <%= f.submit "Update", class: 'btn btn-primary' %>
+          </div>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <div class = "col-offset-0 col-md-4">
+        <div class ="stat">
+          <strong>Status:</strong>
+          <span id="status"><%= Order.order_statuses.key(order.status) %> <span>
+        </span>
+      </div>
+    <% end %>
   </div>
 </div>

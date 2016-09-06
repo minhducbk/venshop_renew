@@ -6,20 +6,26 @@
     <div class = "col-md-3 col-md-offset-7">
       <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right nav-custom">
-          <li>
-            <% if current_user.role ==  User.role_users[:admin] %>
+          <% if current_user.role ==  User.role_users[:admin] %>
+            <li>
               <%= link_to "Post Item", new_item_path %>
-            <% else %>
-              <% if @cart.present? %>
+            </li>
+          <%else%>
+            <% if @cart.present? %>
+              <li>
                 <%= render "layouts/cart", {cart: @cart}%>
-              <% end %>
+              </li>
             <% end %>
-          </li>
+          <% end %>
           <li>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Your Account <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li class="headr">
                 <%= link_to "Edit Profile", edit_user_registration_path %>
+              </li>
+              <li class="headr">
+                <%= link_to (current_user.role ==  User.role_users[:admin]) ?
+                  "All Orders" : "My Orders", orders_path %>
               </li>
               <li class="headr">
                 <%= link_to "Logout", destroy_user_session_path, method: :DELETE %>

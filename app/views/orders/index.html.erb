@@ -1,0 +1,21 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-offset-0 col-md-4">
+      <%= link_to "Home", root_path%> >
+      <%= @is_admin ? "All orders" : "My orders" %>
+    </div>
+  </div>
+  <br />
+  <div class = "row">
+    <div class = "col-md-offset-0 col-md-3">
+      <%= render "categories/catalog", { categories: @categories}%>
+    </div>
+    <div class = "col-md-offset-0 col-md-9">
+      <div>
+        <%= render "orders/list_orders", { list_orders: @list_orders, is_admin: @is_admin}%>
+      </div>
+      <%= paginate @list_orders %>
+      <%= page_entries_info @list_orders %>
+    </div>
+  </div>
+</div>

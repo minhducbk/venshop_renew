@@ -1,0 +1,26 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-offset-0 col-md-4">
+      <%= link_to "Home", root_path%> >
+      <% if @is_admin %>
+        <%= link_to "All orders", orders_path %>
+      <% else %>
+        <%= link_to "My orders", orders_path %>
+      <% end %>
+      >
+      <%= "Order ID #{@order.id}" %>
+    </div>
+  </div>
+  <br />
+  <div class = "row">
+    <div class = "col-md-offset-0 col-md-3">
+      <%= render "categories/catalog", { categories: @categories}%>
+    </div>
+    <div class = "col-md-offset-0 col-md-9">
+      <div>
+        <%= render "orders/order_items", { order: @order, order_items: @order_items,
+          count_items: @count_items, subtotal: @subtotal, is_admin: @is_admin }%>
+      </div>
+    </div>
+  </div>
+</div>
