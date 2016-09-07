@@ -9,15 +9,14 @@ task :vacuum => :environment do
   request.version = Time.now.in_time_zone('Hanoi').strftime("%Y-%m-%d")
   categories = Category.all
   categories.each do |category|
-    item_page = 1
-    10.times do
+    10.times do |page|
       begin
         response = request.item_search(
           query: {
             'SearchIndex' => category.name,
             'Keywords' => category.keyword,
             'ResponseGroup' => "ItemAttributes,Images",
-            'ItemPage' => item_page
+            'ItemPage' => page
           },
           persistent: true
         )
@@ -51,7 +50,6 @@ task :vacuum => :environment do
       rescue
         break
       end
-      item_page += 1
     end
   end
 end
