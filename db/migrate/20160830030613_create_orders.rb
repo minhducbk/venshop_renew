@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :user_id
       t.integer :status
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end
