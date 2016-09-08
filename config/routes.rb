@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  post   '/items(.:format)' => 'items#create', as: :item
+  get '/items/:id(.:format)' => 'items#show', as: :item
+  post   '/items(.:format)' => 'items#create'
   get    '/items/new(.:format)' => 'items#new', as: :new_item
 
   post   '/carts(.:format)' => 'carts#create', as: :cart
@@ -15,9 +16,8 @@ Rails.application.routes.draw do
 
   resources :orders
 
-  resources :categories do
-    get '/items/:id(.:format)' => 'items#show', as: :item
-  end
+  resources :categories
+
   root 'categories#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -34,7 +34,6 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
   # Example resource route with options:
   #   resources :products do
   #     member do
