@@ -11,7 +11,7 @@
         <img src = "<%= item.image_url%>" height = "71px" width = "38px">
       </div>
       <div class = "col-md-9 col-md-offset-0">
-        <%= link_to item.name, category_item_path(item.category.id, item.id) %>
+        <%= link_to item.name, item_path( item.id) %>
         <br />
         <strong> Price </strong>: $<%= item.price%>
       </div>

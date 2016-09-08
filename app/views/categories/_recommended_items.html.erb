@@ -12,7 +12,7 @@
           <%= recommended_items[i*3 + j].name %>
           <br />
           <%= link_to(image_tag(recommended_items[i*3 + j].image_url, width: 38, height: 71),
-           category_item_path(recommended_items[i*3 + j].category.id, recommended_items[i*3 + j].id)) %>
+            item_path(recommended_items[i*3 + j].id)) %>
         </div>
       <% end %>
     </div>
