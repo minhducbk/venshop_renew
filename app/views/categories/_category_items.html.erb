@@ -4,12 +4,17 @@
   </div>
 </div>
 <br />
-<div class = "recommened_list col-md-offset-2">
+<div class = "recommened_list col-md-offset-1">
   <% items.each do |item| %>
     <div class = "row">
-      <img src = "<%= item.image_url%>" height = "71px" width = "38px"> &nbsp &nbsp
-      <%= link_to item.name, category_item_path(item.category.id, item.id) %>
-      <strong> Price </strong>: $<%= item.price%>
+      <div class = "col-md-2 col-md-offset-0">
+        <img src = "<%= item.image_url%>" height = "71px" width = "38px">
+      </div>
+      <div class = "col-md-9 col-md-offset-0">
+        <%= link_to item.name, category_item_path(item.category.id, item.id) %>
+        <br />
+        <strong> Price </strong>: $<%= item.price%>
+      </div>
     </div>
     <br />
   <% end %>
