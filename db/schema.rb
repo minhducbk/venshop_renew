@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160905030338) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+    t.string   "picture",            limit: 255
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
