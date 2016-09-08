@@ -57,7 +57,7 @@ task vacuum: :environment do
             description: description
           )
           item_save.save(validate: false)
-        end
+       end
       rescue
         break
       end
