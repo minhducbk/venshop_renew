@@ -2,7 +2,11 @@
   <%= form_for(:add_to_cart, url: cart_path, method: :post) do |f| %>
     <div class="field">
       <%= f.label :quantity %><br />
-      <%= f.number_field :quantity, min:1, max: stock, autocomplete: "off" %>
+      <% if stock > 30 %>
+        <%= f.select :quantity, 1..30, autocomplete: "off" %>
+      <% else %>
+        <%= f.select :quantity, 1..stock, autocomplete: "off" %>
+      <% end %>
       <%= f.hidden_field :item_id, value: item_id%>
     </div>
 
