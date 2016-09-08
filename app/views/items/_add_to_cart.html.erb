@@ -1,17 +1,21 @@
 <div>
   <%= form_for(:add_to_cart, url: cart_path, method: :post) do |f| %>
-    <div class="field">
-      <%= f.label :quantity %><br />
-      <% if stock > 30 %>
-        <%= f.select :quantity, 1..30, autocomplete: "off" %>
-      <% else %>
-        <%= f.select :quantity, 1..stock, autocomplete: "off" %>
-      <% end %>
-      <%= f.hidden_field :item_id, value: item_id%>
-    </div>
-
+    <% if hidden_quantity.present? %>
+      <%= f.hidden_field :quantity, value: 1%>
+    <% else %>
+      <div class="field">
+        <%= f.label :quantity %><br />
+        <% if stock > 30 %>
+          <%= f.select :quantity, 1..30, autocomplete: "off" %>
+        <% else %>
+          <%= f.select :quantity, 1..stock, autocomplete: "off" %>
+        <% end %>
+        <br />
+      </div>
+    <% end %>
+    <%= f.hidden_field :item_id, value: item_id%>
     <div class="actions">
-      <br />
+
       <%= f.submit "Add to cart", class: "btn btn-primary" %>
     </div>
   <% end %>

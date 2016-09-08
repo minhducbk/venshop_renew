@@ -19,8 +19,14 @@ class CartsController < ApplicationController
           end
         end
       end
-      CartItem.create(item_id: item.id, cart_id: cart.id,
-        quantity: params[:add_to_cart][:quantity])
+      cart_item = CartItem.find_by(item_id: item.id, cart_id: cart.id)
+      if cart_item.present?
+        cart_item.update_columns(quantity: (cart_item.quantity +
+          params[:add_to_cart][:quantity].to_i))
+      else
+        CartItem.create(item_id: item.id, cart_id: cart.id,
+          quantity: params[:add_to_cart][:quantity].to_i)
+      end
     else
       list_items = cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
       if list_items["#{item.id}"].present?
@@ -33,7 +39,7 @@ class CartsController < ApplicationController
         :expires => 4.years.from_now
       }
     end
-    redirect_to category_path(item.category.id)
+    redirect_to cart_path
   end
 
   def show
