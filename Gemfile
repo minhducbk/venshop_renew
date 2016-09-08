@@ -20,6 +20,8 @@ gem 'sidekiq'
 gem 'sinatra'
 gem 'redis-rails'
 gem 'rubocop'
+gem 'rsolr'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'byebug'
