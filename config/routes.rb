@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
+
   post   '/items(.:format)' => 'items#create', as: :item
+  get '/items/:id(.:format)' => 'items#show'
   get    '/items/new(.:format)' => 'items#new', as: :new_item
 
   post   '/carts(.:format)' => 'carts#create', as: :cart
@@ -15,11 +17,10 @@ Rails.application.routes.draw do
 
   resources :orders
 
-  post   '/searches(.:format)' => 'searches#create', as: :search
+  get   '/searches(.:format)' => 'searches#index', as: :search
 
 
-  resources :categories do
-    get '/items/:id(.:format)' => 'items#show', as: :item
-  end
+  resources :categories
+
   root 'categories#index'
 end

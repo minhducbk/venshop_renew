@@ -18,14 +18,14 @@
   <% order_items.each do |record| %>
     <div class = "row">
       <div class = "col-md-offset-0 col-md-1">
-        <%= link_to({controller: "items", action:"show", category_id: record[0].category.id, id: record[0].id}) do %>
-          <img src = "<%= record[0].image_url.present? ? record[0].image_url : record[0].image.url%>"
+        <%= link_to({controller: "items", action:"show", id: record[0].id}) do %>
+          <img src = "<%= record[0].image_url %>"
             height = "71px" width = "38px">
         <% end %>
       </div>
       <div class = "col-md-offset-0 col-md-6">
         <div>
-          <%= link_to record[0].name, category_item_path(record[0].category.id, record[0].id) %>
+          <%= link_to record[0].name, item_path(record[0].id) %>
         </div>
       </div>
       <div class = "col-md-offset-0 col-md-3">

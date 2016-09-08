@@ -1,16 +1,21 @@
 <div class = "row">
   <div class = "header_catalog col-md-offset-0 col-md-12 ">
-    Result for: "<%=key%>"
+    Result for: "<%= key %>"
   </div>
 </div>
 <br />
 <div class = "recommened_list col-md-offset-2">
   <% list_items.each do |item| %>
-    <div class = "row">
-      <img src = "<%= item.image_url.present? ? item.image_url : item.image.url %>"
-      height = "71px" width = "38px"> &nbsp &nbsp
-      <%= link_to item["name"], category_item_path(item.category.id, item.id) %>
-      <strong> Price </strong>: $<%= item["price"]%>
+    <div class= "row">
+      <div class= "col-md-2 col-md-offset-0">
+        <img src= "<%= item["image_url"]%>"
+          height = "71px" width = "38px">
+      </div>
+      <div class = "col-md-8 col-md-offset-0">
+        <%= link_to item["name"], item_path(item["id"]) %>
+        <br />
+        <strong> Price </strong>: $<%= item["price"]%>
+      </div>
     </div>
     <br />
   <% end %>
