@@ -20,6 +20,7 @@ gem 'sinatra'
 gem 'redis-rails'
 gem 'rubocop'
 gem 'rsolr'
+
 gem 'carrierwave'
 gem 'cloudinary'
 

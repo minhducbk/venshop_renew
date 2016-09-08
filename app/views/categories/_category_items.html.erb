@@ -14,6 +14,9 @@
         <%= link_to item.name, item_path( item.id) %>
         <br />
         <strong> Price </strong>: $<%= item.price%>
+        <br />
+        <%= render 'items/add_to_cart', {item_id: item.id, stock: item.stock,
+          hidden_quantity: true}%>
       </div>
     </div>
     <br />
