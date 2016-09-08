@@ -4,17 +4,16 @@
   </div>
 </div>
 
-<div class = "recommened_list col-md-offset-2">
+<div class = "recommened_list col-md-offset-1">
   <% for i in 0..1 do %>
     <div class = "row">
       <% for j in 0..2 do %>
         <div class = "col-md-3">
           <%= recommended_items[i*3 + j].name %>
           <br />
-          <%= link_to(image_tag(recommended_items[i*3 + j].image_url.present? ?
-            recommended_items[i*3 + j].image_url : recommended_items[i*3 + j].image.url,
+          <%= link_to(image_tag(recommended_items[i*3 + j].image_url,
             width: 38, height: 71),
-           category_item_path(recommended_items[i*3 + j].category.id, recommended_items[i*3 + j].id)) %>
+            item_path(recommended_items[i*3 + j].id)) %>
         </div>
       <% end %>
     </div>

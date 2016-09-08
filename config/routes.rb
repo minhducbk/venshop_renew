@@ -18,14 +18,12 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
-  post   '/items(.:format)' => 'items#create', as: :item
+  get    '/items/:id(.:format)' => 'items#show', as: :item
+  post   '/items(.:format)' => 'items#create'
   get    '/items/new(.:format)' => 'items#new', as: :new_item
 
 
-  resources :categories do
-    get '/items/:id(.:format)' => 'items#show', as: :item
-  end
+  resources :categories
   root 'categories#index'
   # Example resource route with options:
   #   resources :products do
