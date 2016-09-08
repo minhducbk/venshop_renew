@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
-  #require 'rubygems'
-  #require 'rsolr'
+  require 'rubygems'
+  require 'rsolr'
   def index
     #solr = RSolr.connect(:read_timeout => 120, :open_timeout => 120)
     solr = RSolr.connect :url => 'http://localhost:8983/solr/item'
