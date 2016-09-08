@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904141915) do
+ActiveRecord::Schema.define(version: 20160908090613) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id",    limit: 4
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160904141915) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+    t.string   "picture",            limit: 255
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree

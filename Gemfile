@@ -11,11 +11,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
-gem "figaro"
+gem 'figaro'
 gem 'config'
 gem 'masonry-rails'
 gem 'kaminari'
-gem "paperclip", "~> 5.0.0"
+gem 'carrierwave'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'byebug'

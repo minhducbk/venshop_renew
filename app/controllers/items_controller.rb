@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
     param.delete("category")
     @item = Item.new(param)
     if @item.save
+      @item.update_columns(image_url: @item.picture_url) if @item.picture
       redirect_to category_path(category.id), {notice: "Post successful"}
     else
       render 'new'
@@ -23,7 +24,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:post_item).permit(:name, :price, :stock, :category, :description, :image)
+    params.require(:post_item).permit(:name, :price, :stock, :category, :description, :picture)
   end
 
 end

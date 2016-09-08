@@ -52,7 +52,6 @@ task :vacuum => :environment do
             category_id: category.id,
             description: description
           )
-
         end
       rescue
         break

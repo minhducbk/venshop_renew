@@ -25,7 +25,7 @@
           </ul>
         </div>
       <% end %>
-      <%= form_for(:post_item, url: item_path, method: :post) do |f| %>
+      <%= form_for(:post_item, url: item_path, method: :post, html:{multipart: true}) do |f| %>
         <div class="field">
           <%= f.label :name_item%><br />
           <%= f.text_field :name, autofocus: true, class: 'form-control' %>
@@ -48,8 +48,8 @@
         </div>
 
         <div class="field">
-          <%= f.label :Image %>
-          <%= f.file_field :image, class: 'form-control' %> <br/>
+          <%= f.label :Picture %>
+          <%= f.file_field :picture, class: 'form-control' %> <br/>
         </div>
 
         <div class="field">
