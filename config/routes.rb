@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  post   '/items(.:format)' => 'items#create', as: :item
-  get '/items/:id(.:format)' => 'items#show'
+  get '/items/:id(.:format)' => 'items#show', as: :item
+  post   '/items(.:format)' => 'items#create'
   get    '/items/new(.:format)' => 'items#new', as: :new_item
 
   post   '/carts(.:format)' => 'carts#create', as: :cart
@@ -21,6 +21,5 @@ Rails.application.routes.draw do
 
 
   resources :categories
-
   root 'categories#index'
 end
