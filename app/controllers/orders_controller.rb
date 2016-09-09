@@ -10,9 +10,9 @@ class OrdersController < ApplicationController
     end
     cart.destroy
     Cart.create(user_id: current_user.id)
-    MailWorker.new.perform(current_user.email)
+    #MailWorker.new.perform(current_user.email)
 
-    #MailWorker.perform_async(current_user.email)
+    MailWorker.perform_async(current_user.email)
     #UserMailer.finish_checkout(current_user).deliver_now
     redirect_to orders_path
   end
