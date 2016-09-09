@@ -1,11 +1,11 @@
-<div class = "container">
-  <div class = "row">
-    <div class = "col-md-offset-0 col-md-4">
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-0 col-md-4">
       <%= link_to "Home", root_path%> > Posting Item
     </div>
   </div>
   <br />
-  <div class = "login">
+  <div class="login">
     <% flash.each do |key, value| %>
        <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
