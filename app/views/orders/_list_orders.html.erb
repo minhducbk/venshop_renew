@@ -1,42 +1,42 @@
-<div class = "row">
-  <div class = "header_catalog col-md-offset-0 col-md-12 ">
+<div class="row">
+  <div class="header_catalog col-md-offset-0 col-md-12 ">
     <%= is_admin ? "All orders" : "My orders" %>
   </div>
 </div>
-<div class = "recommened_list col-md-offset-1 col-md-11">
-  <div class = "row">
-    <div class = "col-md-offset-0 col-md-2">
+<div class="recommened_list col-md-offset-1 col-md-11">
+  <div class="row">
+    <div class="col-offset-0 col-md-2">
       <strong> ID Order </strong>
     </div>
-    <div class = "col-md-offset-0 col-md-2">
+    <div class="col-offset-0 col-md-2">
       <strong> Date Ordered </strong>
     </div>
-    <div class = "quantity col-md-offset-0 col-md-4">
+    <div class="quantity col-offset-0 col-md-4">
       <strong> Products </strong>
     </div>
-    <div class = "quantity col-md-offset-0 col-md-2">
+    <div class="quantity col-offset-0 col-md-2">
       <strong> Subtotal </strong>
     </div>
-    <div class = "quantity col-md-offset-0 col-md-2">
+    <div class="quantity col-offset-0 col-md-2">
       <strong> Status </strong>
     </div>
   </div>
   <hr/>
   <% list_orders.each do |order| %>
-    <div class = "row">
-      <div class = "col-md-offset-0 col-md-2">
+    <div class="row">
+      <div class="col-offset-0 col-md-2">
         <%= link_to order.id, order_path(order.id) %>
       </div>
-      <div class = "col-md-offset-0 col-md-2">
+      <div class="col-offset-0 col-md-2">
         <%= order.created_at.strftime("%Y-%m-%d") %>
       </div>
-      <div class = "quantity col-md-offset-0 col-md-4">
+      <div class="quantity col-offset-0 col-md-4">
         <%= get_name_products(order) %>
       </div>
-      <div class = "quantity col-md-offset-0 col-md-2">
+      <div class="quantity col-offset-0 col-md-2">
         <%= get_subtotal(convert_order_to_array(order)) %>
       </div>
-      <div class = "quantity col-md-offset-0 col-md-2">
+      <div class="quantity col-offset-0 col-md-2">
         <%= Order.order_statuses.key(order.status) %>
       </div>
 
