@@ -5,9 +5,9 @@
 </div>
 <div class = "recommened_list col-md-offset-1 col-md-9">
   <div class = "row">
-    <div class = "col-offset-0 col-md-7">
+    <div class = "col-md-offset-0 col-md-7">
     </div>
-    <div class = "col-offset-0 col-md-2">
+    <div class = "col-md-offset-0 col-md-2">
       <strong> Price </strong>
     </div>
     <div class = "quantity col-offset-0 col-md-3">
@@ -17,21 +17,21 @@
   <hr/>
   <% order_items.each do |record| %>
     <div class = "row">
-      <div class = "col-offset-0 col-md-1">
+      <div class = "col-md-offset-0 col-md-1">
         <%= link_to({controller: "items", action:"show", id: record[0].id}) do %>
           <img src = "<%= record[0].image_url %>"
             height = "71px" width = "38px">
         <% end %>
       </div>
-      <div class = "col-offset-0 col-md-6">
+      <div class = "col-md-offset-0 col-md-6">
         <div>
           <%= link_to record[0].name, item_path(record[0].id) %>
         </div>
       </div>
-      <div class = "col-offset-0 col-md-3">
+      <div class = "col-md-offset-0 col-md-3">
         <span class = "price">$<%= record[0].price%></span>
       </div>
-      <div class = "col-offset-0 col-md-2">
+      <div class = "col-md-offset-0 col-md-2">
         <%=record[1]%>
       </div>
     </div>
@@ -39,9 +39,9 @@
   <% end %>
 
   <div class = "row">
-    <div class = "col-offset-0 col-md-7">
+    <div class = "col-md-offset-0 col-md-7">
     </div>
-    <div class = "subtotal col-offset-0 col-md-5">
+    <div class = "subtotal col-md-offset-0 col-md-5">
       <strong>Subtotal (<%= count_items %> items):</strong>
       <span class = "price"> $<%= subtotal %> </span>
     </div>
@@ -49,10 +49,10 @@
 
   <br />
   <div class = "row">
-    <div class = "col-offset-0 col-md-8">
+    <div class = "col-md-offset-0 col-md-8">
     </div>
     <% if @is_admin %>
-      <div class = "col-offset-0 col-md-4">
+      <div class = "col-md-offset-0 col-md-4">
         <%= form_for(:update_order, url: order_path(order.id), method: :patch) do |f| %>
           <div class="field">
             <%= f.label :status%>:
@@ -66,7 +66,7 @@
         <% end %>
       </div>
     <% else %>
-      <div class = "col-offset-0 col-md-4">
+      <div class = "col-md-offset-0 col-md-4">
         <div class ="stat">
           <strong>Status:</strong>
           <span id="status"><%= Order.order_statuses.key(order.status) %> <span>
