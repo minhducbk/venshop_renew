@@ -8,8 +8,9 @@ task vacuum: :environment do
   )
   request.version = Time.now.in_time_zone('Hanoi').strftime('%Y-%m-%d')
   categories = Category.all
+
   categories.each do |category|
-    10.times do |page|
+    (1..10).each do |page|
       begin
         response = request.item_search(
           query: {
@@ -47,16 +48,22 @@ task vacuum: :environment do
               description = item['ItemAttributes']['Feature']
             end
           end
-          item_save = Item.new(
-            name: item['ItemAttributes']['Title'],
-            price: price,
-            amazon_id: item['ASIN'],
-            image_url: image_url,
-            stock: stock,
-            category_id: category.id,
-            description: description
-          )
-          item_save.save(validate: false)
+          item_exist = Item.find_by(amazon_id: item['ASIN'])
+          if item_exist.present?
+            item_exist.update_columns(price: price)
+            puts "Update price item #{item['ASIN']}"
+          else
+            item_new = Item.new(
+              name: item['ItemAttributes']['Title'],
+              price: price,
+              amazon_id: item['ASIN'],
+              image_url: image_url,
+              stock: stock,
+              category_id: category.id,
+              description: description
+            )
+            item_new.save(validate: false)
+          end
         end
       rescue
         break

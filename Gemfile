@@ -20,7 +20,7 @@ gem 'sinatra'
 gem 'redis-rails'
 gem 'rubocop'
 gem 'rsolr'
-
+gem 'whenever', :require => false
 gem 'carrierwave'
 gem 'cloudinary'
 
