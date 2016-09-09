@@ -10,8 +10,8 @@
         <% else %>
           <%= f.select :quantity, 1..stock, autocomplete: "off" %>
         <% end %>
-        <br />
       </div>
+      <br />
     <% end %>
     <%= f.hidden_field :item_id, value: item_id %>
 

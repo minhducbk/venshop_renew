@@ -1,30 +1,30 @@
-<div class = "row">
-  <div class = "header_catalog col-md-offset-0 col-md-12 ">
+<div class="row">
+  <div class="header_catalog col-md-offset-0 col-md-12 ">
     Shopping Cart
   </div>
 </div>
 
-<div class = "recommened_list col-md-offset-1 col-md-9">
-  <div class = "row">
-    <div class = "col-md-offset-0 col-md-7">
+<div class="recommened_list col-md-offset-1 col-md-9">
+  <div class="row">
+    <div class="col-offset-0 col-md-7">
     </div>
-    <div class = "col-md-offset-0 col-md-2">
+    <div class="col-offset-0 col-md-2">
       <strong> Price </strong>
     </div>
-    <div class = "quantity col-md-offset-0 col-md-3">
+    <div class="quantity col-offset-0 col-md-3">
       <strong> Quantity </strong>
     </div>
   </div>
   <hr/>
   <% cart_items.each do |record| %>
-    <div class = "row">
-      <div class = "col-md-offset-0 col-md-1">
-        <%= link_to({controller: "items", action:"show", id: record[0].id}) do %>
-          <img src = "<%= record[0].image_url %>"
-            height = "71px" width = "38px">
+    <div class="row">
+      <div class="col-offset-0 col-md-1">
+        <%= link_to({controller: "items", action:"show" id: record[0].id}) do %>
+          <img src="<%= record[0].image_url %>"
+            height="71px" width="38px">
         <% end %>
       </div>
-      <div class = "col-md-offset-0 col-md-6">
+      <div class="col-offset-0 col-md-6">
         <div>
           <%= link_to record[0].name, item_path(record[0].id) %>
         </div>
@@ -33,29 +33,29 @@
           <%= link_to "Delete", cart_path(item_id: record[0].id), method: :delete %>
         </div>
       </div>
-      <div class = "col-md-offset-0 col-md-3">
-        <span class = "price">$<%= record[0].price%></span>
+      <div class="col-offset-0 col-md-3">
+        <span class="price">$<%= record[0].price%></span>
       </div>
-      <div class = "col-md-offset-0 col-md-2">
+      <div class="col-offset-0 col-md-2">
         <%=record[1]%>
       </div>
     </div>
     <hr/>
   <% end %>
 
-  <div class = "row">
-    <div class = "col-md-offset-0 col-md-7">
+  <div class="row">
+    <div class="col-offset-0 col-md-7">
     </div>
-    <div class = "subtotal col-md-offset-0 col-md-5">
+    <div class="subtotal col-offset-0 col-md-5">
       <strong>Subtotal (<%= count_items %> items):</strong>
-      <span class = "price"> $<%= subtotal %> </span>
+      <span class="price"> $<%= subtotal %> </span>
     </div>
   </div>
 
-  <div class = "row">
-    <div class = "col-md-offset-0 col-md-7">
+  <div class="row">
+    <div class="col-offset-0 col-md-7">
     </div>
-    <div class = "col-md-offset-0 col-md-5">
+    <div class="col-offset-1 col-md-5">
       <% if cart_items.present? %>
         <% if user_signed_in? %>
           <%= link_to "Checkout", orders_path, method: :post, class: "btn checkout2",
