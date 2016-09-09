@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  get '/items/:id(.:format)' => 'items#show', as: :item
-  post   '/items(.:format)' => 'items#create'
   get    '/items/new(.:format)' => 'items#new', as: :new_item
+  get '/items/:id(.:format)' => 'items#show', as: :item
+  post   '/items(.:format)' => 'items#create',as: :create_item
+
 
   post   '/carts(.:format)' => 'carts#create', as: :cart
   get '/carts/(.:format)' => 'carts#show'
