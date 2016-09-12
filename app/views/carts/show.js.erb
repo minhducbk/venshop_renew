@@ -1,0 +1,5 @@
+<% if @enough_stock %>
+  location.href = '/order/create';
+<% else %>
+  location.href = '/carts?reload=true';
+<% end %>

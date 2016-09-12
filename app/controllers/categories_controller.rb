@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-
   def index
     @recommended_items = Item.last(6)
     @newest_items = Item.last(4)

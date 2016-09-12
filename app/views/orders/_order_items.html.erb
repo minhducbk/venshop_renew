@@ -3,6 +3,12 @@
     <%= "Order #{order.id}"%>
   </div>
 </div>
+<br />
+<div>
+  <% flash.each do |key, value| %>
+     <div class="alert alert-danger"><%= value %></div>
+  <% end %>
+</div>
 <div class="recommened_list col-md-offset-1 col-md-9">
   <div class="row">
     <div class="col-md-offset-0 col-md-7">

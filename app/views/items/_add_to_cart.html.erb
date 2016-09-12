@@ -1,5 +1,5 @@
 <div>
-  <%= form_for(:add_to_cart, url: cart_path, method: :post) do |f| %>
+  <%= form_for(:add_to_cart, url: cart_create_path, method: :post) do |f| %>
     <% if hidden_quantity.present? %>
       <%= f.hidden_field :quantity, value: 1 %>
     <% else %>

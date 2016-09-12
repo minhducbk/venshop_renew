@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include OrdersHelper
 
   private
+
   def get_categories
     @categories = Category.all
   end

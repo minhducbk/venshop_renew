@@ -3,7 +3,12 @@
     Shopping Cart
   </div>
 </div>
-
+<br />
+<% if reload %>
+  <div id="alert-cart">
+    <div class="alert alert-danger">Not enough item in stock. Therefore must be reload cart!</div>
+  </div>
+<% end %>
 <div class="recommened_list col-md-offset-1 col-md-9">
   <div class="row">
     <div class="col-offset-0 col-md-7">
@@ -19,7 +24,7 @@
   <% cart_items.each do |record| %>
     <div class="row">
       <div class="col-md-offset-0 col-md-1">
-        <%= link_to({controller: "items", action:"show" id: record[0].id}) do %>
+        <%= link_to({controller: "items", action:"show", id: record[0].id}) do %>
           <img src="<%= record[0].image_url %>"
             height="71px" width="38px">
         <% end %>
@@ -58,7 +63,7 @@
     <div class="col-md-offset-1 col-md-5">
       <% if cart_items.present? %>
         <% if user_signed_in? %>
-          <%= link_to "Checkout", orders_path, method: :post, class: "btn checkout2",
+          <%= link_to "Checkout", cart_path, method: :get, remote: true, class: "btn checkout2",
             data: { confirm: 'Are you sure?' } %>
         <% else %>
           <%= link_to "Proceed to checkout", new_user_session_path, class: "btn checkout"%>

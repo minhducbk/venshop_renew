@@ -1,17 +1,37 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_permitted_parameters, only: [:create]
-# before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+
+    if current_user.role == User.role_users[:customer]
+      cart = Cart.find_by(user_id: current_user.id)
+      unless cart.present?
+        cart = Cart.create(user_id: current_user.id)
+      end
+      if cookies[:cart].present?
+        list_items = JSON.parse(cookies[:cart])
+        list_items.each do |record|
+          cart_item = CartItem.find_by(item_id: record[0].to_i, cart_id: cart.id)
+          if cart_item.present?
+            cart_item.update_columns(quantity: (cart_item.quantity + record[1].to_i))
+          else
+            CartItem.create(item_id: record[0].to_i, cart_id: cart.id,
+                            quantity: record[1].to_i)
+          end
+        end
+        cookies[:cart] = nil
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit

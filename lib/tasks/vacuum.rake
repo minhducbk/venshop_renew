@@ -16,7 +16,7 @@ task vacuum: :environment do
           query: {
             'SearchIndex' => category.name,
             'Keywords' => category.keyword,
-            'ResponseGroup' => "ItemAttributes,Images",
+            'ResponseGroup' => 'ItemAttributes,Images',
             'ItemPage' => page
           },
           persistent: true
@@ -31,7 +31,7 @@ task vacuum: :environment do
             stock = Random.new.rand(500).to_i
           end
           if item['LargeImage'].present? || item['SmallImage'].present? ||
-            item['MediumImage'].present?
+             item['MediumImage'].present?
             image_url ||= item['LargeImage']['URL']
             image_url ||= item['MediumImage']['URL']
             image_url ||= item['SmallImage']['URL']

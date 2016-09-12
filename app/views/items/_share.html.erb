@@ -1,0 +1,26 @@
+<a href="#" onclick='postToFeed("<%= image_url%>","<%= somte text %>"); return false;'>
+  <%= image_tag("btn_fb.png" , :alt=>"Facebook") %>
+</a>
+
+<script type="text/javascript">
+  FB.init({appId: APP_ID", status: true, cookie: true});
+  function postToFeed(img,name) {
+    // calling the API ...
+    var obj = {
+      method: 'feed',
+       redirect_uri: 'http://localhost:3000',
+      link: 'http://url/',
+      picture: img,
+      name: 'NAME',
+      caption: 'CAPTION',
+      description: DESCRIPTION
+    };
+
+    function callback(response) {
+      document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+    }
+
+    FB.ui(obj, callback);
+  }
+
+</script>

@@ -6,18 +6,18 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  get    '/items/new(.:format)' => 'items#new', as: :new_item
+  get '/items/new(.:format)' => 'items#new', as: :new_item
   get '/items/:id(.:format)' => 'items#show', as: :item
-  post   '/items(.:format)' => 'items#create',as: :create_item
+  post '/items(.:format)' => 'items#create', as: :create_item
 
-
-  post   '/carts(.:format)' => 'carts#create', as: :cart
-  get '/carts/(.:format)' => 'carts#show'
+  post '/carts/create(.:format)' => 'carts#create', as: :cart_create
+  get '/carts/(.:format)' => 'carts#show', as: :cart
   delete '/carts/(.:format)' => 'carts#destroy'
 
-  resources :orders
+  resources :orders, except: :create
+  get '/order/create(.:format)' => 'orders#create', as: :order_create
 
-  get   '/searches(.:format)' => 'searches#index', as: :search
+  get '/searches(.:format)' => 'searches#index', as: :search
 
   resources :categories
   root 'categories#index'

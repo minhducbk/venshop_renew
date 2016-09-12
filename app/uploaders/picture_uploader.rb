@@ -13,7 +13,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # storage 'cloudinary'
 
   version :standard do
-    process :resize_to_fill => [100, 150, :north]
+    process resize_to_fill: [100, 150, :north]
   end
 
   version :thumbnail do
