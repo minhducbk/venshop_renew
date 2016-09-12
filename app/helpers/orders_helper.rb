@@ -10,7 +10,7 @@ module OrdersHelper
     if order.order_items.count == 1
       prefix
     else
-      "#{prefix} and #{quantity - order.order_items[0].quantity.to_s} other products"
+      "#{prefix} and #{quantity - order.order_items[0].quantity.to_i} other products"
     end
   end
 

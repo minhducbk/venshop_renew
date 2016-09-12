@@ -1,5 +1,6 @@
-<a href="#" onclick='postToFeed("<%= image_url%>","<%= somte text %>"); return false;'>
-  <%= image_tag("btn_fb.png" , :alt=>"Facebook") %>
+<!-- <a href="#"
+  onclick='postToFeed("<%#= image_tag(asset_path('FaceBookIcon.png')) %>", "some text"); return false;'>
+  <%#= image_tag(asset_path('FaceBookIcon.png') , :alt=>"Facebook") %>
 </a>
 
 <script type="text/javascript">
@@ -24,3 +25,15 @@
   }
 
 </script>
+ -->
+
+<a target="_blank"
+   href="https://www.facebook.com/sharer.php
+     ?name=<%= item.name%>
+     &picture=<%=item.image_url%>
+     &redirect_uri=http://facebook.com/"
+   class="icon icon-facebook">
+</a>
+
+<%#= link_to image_tag(asset_path('FaceBookIcon.png')),
+  'http://www.facebook.com/sharer.php?u='+request.fullpath, :target => :blank %>

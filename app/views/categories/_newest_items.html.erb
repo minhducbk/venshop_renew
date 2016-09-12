@@ -7,9 +7,14 @@
 <div class="recommened_list col-md-offset-1">
   <% newest_items.each do |item| %>
     <div class="row">
-      <img src="<%= item.image_url%>" height="71px" width="38px">
-      <%= link_to item.name, item_path( item.id) %>
-      <strong> Price </strong>: $<%= item.price %>
+      <div class="col-sm-6 col-md-2">
+        <img src="<%= item.image_url%>" height="71px" width="38px">
+      </div>
+      <div class="col-md-9 col-md-offset-0">
+        <%= link_to item.name, item_path( item.id) %>
+        <br />
+        <strong> Price </strong>: $<%= item.price %>
+      </div>
     </div>
     <br />
   <% end %>

@@ -23,10 +23,14 @@ gem 'rsolr'
 gem 'whenever', require: false
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'meta-tags'
+gem 'thin'
 
 group :development, :test do
   gem 'byebug'
   gem 'pry'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', '~> 2.0', require: false
 end
 
 group :development do

@@ -50,11 +50,11 @@
   </div>
   <div class = "row">
     <%= form_for(:search, url: search_path , method: :get) do |f| %>
-        <div class = "col-md-offset-0 col-md-9">
-          <%= f.text_field :key_word, class: "form-control search-bar"%>
+        <div class = "col-md-offset-2 col-md-8">
+          <%= f.text_field :key_word, class: "search-bar form-control" %>
         </div>
-        <div class="col-md-offset-1 col-md-2">
-          <%= f.submit "Search", class: 'btn btn-primary search-btn' %>
+        <div class="col-md-offset-0 col-md-2">
+          <%= f.submit "Search", class: "btn btn-primary search-btn" %>
         </div>
       </div>
     <% end %>

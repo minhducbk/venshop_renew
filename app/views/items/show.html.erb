@@ -1,3 +1,5 @@
+<% set_meta_tags title: 'Item Venshopp' %>
+<% set_meta_tags keywords: %w[venshop Venshop item @item.name] %>
 <div class="container">
   <div class= "row">
     <div class= "col-md-offset-0 col-md-4">
@@ -19,38 +21,40 @@
         </div>
         <div class="col-md-offset-0 col-md-9">
           <div class="row">
-            Item ID: <%= @item.id %>
+            <strong> Item ID: </strong> <%= @item.id %>
           </div>
           <div class="row">
-            Price: $<%= @item.price %>
+            <strong> Price: </strong> $<%= @item.price %>
           </div>
           <div class="row">
-            Date: <%= @item.updated_at.strftime("%Y-%m-%d") %>
+            <strong> Date: </strong> <%= @item.updated_at.strftime("%Y-%m-%d") %>
+          </div>
+          <div class="row">
+            <% unless user_signed_in? && (current_user.role == User.role_users[:admin])%>
+              <% if @item.stock > 0 %>
+                <%= render "items/add_to_cart", {stock: @item.stock, item_id: @item.id,
+                  hidden_quantity: nil} %>
+              <% else %>
+                <div class="out_of_stock">
+                  Out of stock
+                </div>
+              <% end %>
+            <% else %>
+              Stock: <span class="out_of_stock"><%= @item.stock %></span>
+            <% end %>
           </div>
         </div>
       </div>
+      <br />
       <div class="row description">
         <strong>Description</strong>:
         <br />
         <%= @item.description %>
       </div>
       <br />
+
       <div class="row">
-        <% unless user_signed_in? && (current_user.role == User.role_users[:admin])%>
-          <% if @item.stock > 0 %>
-            <%= render "items/add_to_cart", {stock: @item.stock, item_id: @item.id,
-              hidden_quantity: nil} %>
-          <% else %>
-            <div class="out_of_stock">
-              Out of stock
-            </div>
-          <% end %>
-        <% else %>
-          Stock: <span class="out_of_stock"><%= @item.stock %></span>
-        <% end %>
-      </div>
-      <div class="row">
-        <%= render 'items/share'%>
+        <%= render 'items/share', {item: @item}%>
       </div>
     </div>
   </div>
