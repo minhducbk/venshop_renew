@@ -1,64 +1,66 @@
-<div id="header">
-  <div class="row">
-    <div class="col-md-1 col-md-offset-0">
-      <img src="<%= asset_path( 'logo.png' ) %>"  alt="Smiley face" height="120" width="200" class= "logo">
-    </div>
-    <div class="col-md-3 col-md-offset-7">
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right nav-custom">
-          <% if user_signed_in? %>
-            <% if current_user.role ==  User.role_users[:admin] %>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div id="header">
+    <div class="row">
+      <div class="col-md-1 col-md-offset-0">
+        <img src="<%= asset_path( 'logo.png' ) %>"  alt="Smiley face" height="120" width="200" class= "logo">
+      </div>
+      <div class="col-md-3 col-md-offset-7">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right nav-custom">
+            <% if user_signed_in? %>
+              <% if current_user.role ==  User.role_users[:admin] %>
+                <li>
+                  <%= link_to "Post Item", new_item_path %>
+                </li>
+              <% else %>
+                <% if @cart.present? %>
+                  <li>
+                    <%= render "layouts/cart", {cart: @cart}%>
+                  </li>
+                <% end %>
+              <% end %>
               <li>
-                <%= link_to "Post Item", new_item_path %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Your Account <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="headr">
+                    <%= link_to "Edit Profile", edit_user_registration_path %>
+                  </li>
+                  <li class="headr">
+                    <%= link_to (current_user.role ==  User.role_users[:admin]) ?
+                      "All Orders" : "My Orders", orders_path %>
+                  </li>
+                  <li class="headr">
+                    <%= link_to "Logout", destroy_user_session_path, method: :DELETE %>
+                  </li>
+                </ul>
               </li>
             <% else %>
-              <% if @cart.present? %>
-                <li>
-                  <%= render "layouts/cart", {cart: @cart}%>
-                </li>
-              <% end %>
+              <li>
+                <%= render "layouts/cart", {cart: @cart}%>
+              </li>
+              <li>
+                <%= link_to "Login", new_user_session_path%>
+              </li>
+              <li>
+                <%= link_to "Register", new_user_registration_path%>
+              </li>
             <% end %>
-            <li>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Your Account <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li class="headr">
-                  <%= link_to "Edit Profile", edit_user_registration_path %>
-                </li>
-                <li class="headr">
-                  <%= link_to (current_user.role ==  User.role_users[:admin]) ?
-                    "All Orders" : "My Orders", orders_path %>
-                </li>
-                <li class="headr">
-                  <%= link_to "Logout", destroy_user_session_path, method: :DELETE %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li>
-              <%= render "layouts/cart", {cart: @cart}%>
-            </li>
-            <li>
-              <%= link_to "Login", new_user_session_path%>
-            </li>
-            <li>
-              <%= link_to "Register", new_user_registration_path%>
-            </li>
-          <% end %>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <div class = "row">
-    <%= form_for(:search, url: search_path , method: :get) do |f| %>
-        <div class = "col-md-offset-2 col-md-8">
-          <%= f.text_field :key_word, class: "search-bar form-control" %>
+    <div class = "row">
+      <%= form_for(:search, url: search_path , method: :get) do |f| %>
+          <div class = "col-md-offset-2 col-md-8">
+            <%= f.text_field :key_word, class: "search-bar form-control" %>
+          </div>
+          <div class="col-md-offset-0 col-md-2">
+            <%= f.submit "Search", class: "btn btn-primary search-btn" %>
+          </div>
         </div>
-        <div class="col-md-offset-0 col-md-2">
-          <%= f.submit "Search", class: "btn btn-primary search-btn" %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
-
-
+  <br />
+</nav>

@@ -1,5 +1,5 @@
 set :application, 'Venshop_Duc'
-set :repo_url, "git@bitbucket.org:51300904/venshop.git"
+set :repo_url, "git@gitlab.zigexn.vn:ducbm/Venshop_Duc.git"
 set :rbenv_ruby, '2.3.1'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
