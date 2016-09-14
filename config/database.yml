@@ -19,3 +19,5 @@ test:
 production:
   <<: *default
   database: venshop_production
+  username: root
+  password:
