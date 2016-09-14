@@ -1,17 +1,17 @@
 set :application, 'Venshop_Duc'
-set :repo_url, "git@gitlab.zigexn.vn:ducbm/Venshop_Duc.git"
+set :repo_url, "git@bitbucket.org:51300904/venshop.git"
 set :rbenv_ruby, '2.3.1'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :deploy_to, "/home/ventura/deploy/Venshop_Duc"
+set :deploy_to, "/home/vagrant/Venshop_Duc"
 # set :scm, :git
 
 set :format, :pretty
 set :log_level, :debug
 set :pty, true
 
-set :user, 'deploy'
+set :user, 'vagrant'
 
 set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -30,7 +30,7 @@ namespace :deploy do
   desc 'Start application'
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
-      execute "cd #{current_path} && bundle exec passenger start -d -p 8080 -e production --user=deploy"
+      execute "cd #{current_path} && bundle exec passenger start -d -p 8080 -e production --user=vagrant"
     end
   end
 
@@ -52,3 +52,12 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
 
 end
+
+# desc 'Restart application'
+# task :restart do
+#   on roles(:app), in: :sequence, wait: 5 do
+#     execute "service thin restart"  ## -> line you should add
+#   end
+# end
+
+# after :publishing, :restart
