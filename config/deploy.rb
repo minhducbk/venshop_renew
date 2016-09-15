@@ -35,3 +35,12 @@ set :deploy_to, '/home/vagrant/venshop_Duc'
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+desc 'Restart application'
+task :restart do
+  on roles(:app), in: :sequence, wait: 5 do
+    execute "service thin restart"  ## -> line you should add
+  end
+end
+
+after :publishing, :restart

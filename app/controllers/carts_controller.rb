@@ -2,8 +2,8 @@ class CartsController < ApplicationController
   def create
     item = Item.find_by(id: params[:add_to_cart][:item_id])
     if user_signed_in?
-      cart = Cart.find_by(user_id: current_user.id)
-      unless cart.present?
+      cart = current_user.cart
+      if cart.blank?
         cart = Cart.create(user_id: current_user.id)
         if cookies[:cart].present?
           list_items = JSON.parse(cookies[:cart])
@@ -48,7 +48,7 @@ class CartsController < ApplicationController
     if request.xhr?
       respond_to do |format|
         if user_signed_in?
-          cart = Cart.find_by(user_id: current_user.id)
+          cart = current_user.cart
         else
           cart = cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
         end
@@ -59,7 +59,7 @@ class CartsController < ApplicationController
     else
       @cart_items = []
       if user_signed_in?
-        cart = Cart.find_by(user_id: current_user.id)
+        cart = current_user.cart
         enough_stock_to_sale_and_reload?(cart)
         @cart_items = cart.cart_items.map do |cart_item|
           [Item.find_by(id: cart_item.item_id), cart_item.quantity]
@@ -80,7 +80,7 @@ class CartsController < ApplicationController
   # Destroy item in cart
   def destroy
     if user_signed_in?
-      cart = Cart.find_by(user_id: current_user.id)
+      cart = current_user.cart
       CartItem.find_by(item_id: params[:item_id].to_i, cart_id: cart.id).destroy
     else
       list_items = JSON.parse(cookies[:cart])

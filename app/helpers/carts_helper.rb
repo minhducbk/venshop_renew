@@ -1,7 +1,7 @@
 module CartsHelper
   def get_current_cart
     if user_signed_in?
-      Cart.find_by(user_id: current_user.id)
+      current_user.cart
     else
       cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
     end
