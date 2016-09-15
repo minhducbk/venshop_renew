@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 gem 'rails', '4.2.6'
 gem 'mysql2'
 gem 'vacuum'

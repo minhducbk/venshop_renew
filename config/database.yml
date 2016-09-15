@@ -3,7 +3,7 @@ default: &default
   pool: 5
   timeout: 5000
   username: root
-  password: vagrant
+  password: ventura
   encoding: utf8
   host: 127.0.0.1
   port: 3306
@@ -19,6 +19,7 @@ test:
   database: venshop_test
 
 production:
+  <<: *default
   adapter: mysql2
   pool: 5
   timeout: 5000
