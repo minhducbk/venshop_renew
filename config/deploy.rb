@@ -38,13 +38,13 @@ set :deploy_to, '/home/vagrant/venshop_Duc'
 
 desc 'Restart application'
 
-set :passenger_roles, :app
-set :passenger_restart_runner, :sequence
-set :passenger_restart_wait, 5
-set :passenger_restart_limit, 2
-set :passenger_restart_with_sudo, false
-set :passenger_environment_variables, {}
-set :passenger_restart_command, 'passenger-config restart-app'
-set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
+# set :passenger_roles, :app
+# set :passenger_restart_runner, :sequence
+# set :passenger_restart_wait, 5
+# set :passenger_restart_limit, 2
+# set :passenger_restart_with_sudo, false
+# set :passenger_environment_variables, {}
+# set :passenger_restart_command, 'passenger-config restart-app'
+# set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
 
 # after :publishing, :restart
