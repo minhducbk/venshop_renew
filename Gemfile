@@ -31,6 +31,7 @@ group :development, :test do
   gem 'pry'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', '~> 2.0', require: false
+  gem 'capistrano-passenger', '>= 0.1.1'
 end
 
 group :development do

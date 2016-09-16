@@ -43,4 +43,7 @@ task :restart do
   end
 end
 
+set :passenger_environment_variables, { :path => '/path-to-passenger/bin:$PATH' }
+set :passenger_restart_command, '/path-to-passenger/bin/passenger-config restart-app'
+
 # after :publishing, :restart
