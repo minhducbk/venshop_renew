@@ -37,11 +37,6 @@ set :deploy_to, '/home/vagrant/venshop_Duc'
 # set :keep_releases, 5
 
 desc 'Restart application'
-task :restart do
-  on roles(:app), in: :sequence, wait: 5 do
-    execute "service thin restart"  ## -> line you should add
-  end
-end
 
 set :passenger_roles, :app
 set :passenger_restart_runner, :sequence
