@@ -52,6 +52,4 @@ set :passenger_environment_variables, {}
 set :passenger_restart_command, 'passenger-config restart-app'
 set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
 
-after :some_other_task, :'passenger:restart'
-
 # after :publishing, :restart
