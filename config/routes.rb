@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/items/:id(.:format)' => 'items#show', as: :item
   post '/items(.:format)' => 'items#create', as: :create_item
 
-  post '/carts/create(.:format)' => 'carts#create', as: :cart_create
+  post '/item_carts/create(.:format)' => 'item_carts#create', as: :item_cart_create
   get '/carts/(.:format)' => 'carts#show', as: :cart
   delete '/carts/(.:format)' => 'carts#destroy'
 
