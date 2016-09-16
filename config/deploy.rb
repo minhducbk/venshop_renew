@@ -46,4 +46,5 @@ end
 set :passenger_environment_variables, { :path => '/path-to-passenger/bin:$PATH' }
 set :passenger_restart_command, '/path-to-passenger/bin/passenger-config restart-app'
 
+set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
 # after :publishing, :restart

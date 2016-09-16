@@ -25,6 +25,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'meta-tags'
 gem 'thin'
+gem 'capistrano-rvm'
 
 group :development, :test do
   gem 'byebug'
