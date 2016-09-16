@@ -43,8 +43,15 @@ task :restart do
   end
 end
 
-set :passenger_environment_variables, { :path => '/path-to-passenger/bin:$PATH' }
-set :passenger_restart_command, '/path-to-passenger/bin/passenger-config restart-app'
+set :passenger_roles, :app
+set :passenger_restart_runner, :sequence
+set :passenger_restart_wait, 5
+set :passenger_restart_limit, 2
+set :passenger_restart_with_sudo, false
+set :passenger_environment_variables, {}
+set :passenger_restart_command, 'passenger-config restart-app'
+set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
 
-set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
+after :some_other_task, :'passenger:restart'
+
 # after :publishing, :restart
