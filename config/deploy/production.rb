@@ -60,4 +60,4 @@
 #     # password: 'please use keys'
 #   }
 
-server '192.168.1.155', user: 'vagrant', roles: %w{web app}
+server '192.168.0.155', user: 'vagrant', roles: %w{web app}
