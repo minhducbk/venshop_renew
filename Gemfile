@@ -26,7 +26,7 @@ gem 'cloudinary'
 gem 'meta-tags'
 gem 'thin'
 # gem 'capistrano-passenger'
-gem 'therubyracer',  platforms: :ruby
+# gem 'therubyracer',  platforms: :ruby
 
 group :development, :test do
   gem 'byebug'
