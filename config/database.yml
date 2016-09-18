@@ -19,7 +19,6 @@ test:
   database: venshop_test
 
 production:
-  <<: *default
   adapter: mysql2
   pool: 5
   timeout: 5000
