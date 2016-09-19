@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  # skip_before_action :verify_authenticity_token
 
   def show
     if request.xhr?
@@ -30,6 +31,36 @@ class CartsController < ApplicationController
       @count_items = get_quantity(cart)
       @subtotal = get_subtotal(@cart_items)
       @reload = params[:reload].present?
+    end
+  end
+
+  def update
+    respond_to do |format|
+      @item_id = params[:quantity][:item_id].to_i
+      @subtotal = params[:quantity][:subtotal].to_f
+      @quantity = params[:quantity][:quantity].to_i
+      item = Item.find_by(id: @item_id)
+      if user_signed_in?
+        cart = current_user.cart
+        item_cart = CartItem.find_by(cart_id: cart.id,
+          item_id: @item_id)
+        @subtotal = (@subtotal - (item_cart.quantity * item.price) +
+                  (@quantity*item.price)).round(2)
+        item_cart.update_column(:quantity, params[:quantity][:quantity].to_i )
+
+      else
+        cart = cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
+        @subtotal = (@subtotal - (cart["#{@item_id}"].to_i * item.price) +
+                  (@quantity*item.price)).round(2)
+        cart["#{@item_id}"] = params[:quantity][:quantity].to_i
+        cookies[:cart] = {
+          value: cart.to_json,
+          expires: 4.years.from_now
+        }
+      end
+      @count_items = get_quantity(cart)
+      format.html {}
+      format.js {}
     end
   end
 

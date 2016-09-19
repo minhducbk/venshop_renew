@@ -56,6 +56,10 @@ module CartsHelper
           end
         end
       end
+      cookies[:cart] = {
+        value: cart.to_json,
+        expires: 4.years.from_now
+      }
     end
     enough
   end

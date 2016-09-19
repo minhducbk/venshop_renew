@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   post '/item_carts/create(.:format)' => 'item_carts#create', as: :item_cart_create
   get '/carts/(.:format)' => 'carts#show', as: :cart
+  put '/carts/(.:format)' => 'carts#update'
   delete '/carts/(.:format)' => 'carts#destroy'
 
   resources :orders, except: :create

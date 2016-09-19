@@ -1,0 +1,8 @@
+$("#quantity_<%= @item_id.to_s %>").attr("selected", <%= @quantity.to_i %>);
+$("#subtotal").html("$<%= @subtotal.to_s %>");
+$("#quantity_subtotal").attr("value", <%= @subtotal.to_f %>);
+<% if @count_items > 1 %>
+  $("#count_items").html("<%= @count_items.to_s %> items");
+<% else %>
+  $("#count_items").html("1 item");
+<% end %>

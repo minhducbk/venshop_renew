@@ -39,10 +39,22 @@
         </div>
       </div>
       <div class="col-md-offset-0 col-md-3">
-        <span class="price">$<%= record[0].price%></span>
+        <span class="price">
+          $<%= record[0].price%>
+        </span>
       </div>
       <div class="col-md-offset-0 col-md-2">
-        <%=record[1]%>
+        <%= form_for("quantity", url: cart_path, method: :put, remote: true) do |f| %>
+          <%= f.hidden_field :item_id, value: record[0].id %>
+          <%= f.hidden_field :subtotal, value: subtotal %>
+          <% if record[0].stock > 30 %>
+            <%= f.select :quantity, 1..30, {selected: record[1]},
+              {id: "quantity_#{record[0].id.to_s}", onchange: "$(this).closest('form').submit();"}%>
+          <% else %>
+            <%= f.select :quantity, 1..record[0].stock, {selected: record[1]},
+              {id: "quantity_#{record[0].id.to_s}", onchange: "$(this).closest('form').submit();"}%>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <hr/>
@@ -52,8 +64,8 @@
     <div class="col-md-offset-0 col-md-7">
     </div>
     <div class="subtotal col-md-offset-0 col-md-5">
-      <strong>Subtotal (<%= count_items %> items):</strong>
-      <span class="price"> $<%= subtotal %> </span>
+      <strong>Subtotal (<span id="count_items"> <%= count_items %> items </span>):</strong>
+      <span class="price" id="subtotal"> $<%= subtotal %> </span>
     </div>
   </div>
 
@@ -63,8 +75,8 @@
     <div class="col-md-offset-0 col-md-5">
       <% if cart_items.present? %>
         <% if user_signed_in? %>
-          <%= link_to "Checkout", cart_path, method: :get, remote: true, class: "btn checkout2",
-            data: { confirm: 'Are you sure?' } %>
+          <%= link_to "Checkout", cart_path, method: :get, remote: true,
+            class: "btn checkout2", data: { confirm: 'Are you sure?' } %>
         <% else %>
           <%= link_to "Proceed to checkout", new_user_session_path, class: "btn checkout"%>
         <% end %>
