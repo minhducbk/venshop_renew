@@ -3,7 +3,9 @@
   <div id="header">
     <div class="row">
       <div class="col-md-1 col-md-offset-0">
-        <img src="<%= asset_path( 'logo.png' ) %>"  alt="Smiley face" height="120" width="200" class= "logo">
+        <%= link_to root_path do %>
+          <img src="<%= asset_path( 'logo.png' ) %>"  alt="Smiley face" height="120" width="200" class= "logo">
+        <% end %>
       </div>
       <div class="col-md-3 col-md-offset-7">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
