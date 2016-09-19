@@ -1,4 +1,7 @@
-<% set_meta_tags title: 'Sign up' %>
+<% content_for :head do %>
+  <%= display_meta_tags site: 'Venshop', title: "Signup" %>
+  <%= display_meta_tags keywords: %w[venshop Venshop signup ] %>
+<% end %>
 <div class = "container">
   <div class = "login">
     <% flash.each do |key, value| %>

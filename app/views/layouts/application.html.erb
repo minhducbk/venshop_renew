@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Venshop</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
+  <% else %>
+    <title>Venshop</title>
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -11,6 +15,5 @@
   <br />
   <%= yield %>
   <%=render "layouts/footer"%>
-
 </body>
 </html>

@@ -1,5 +1,8 @@
-<% set_meta_tags title: 'Venshop' %>
-<% set_meta_tags keywords: %w[venshop Venshop categories] %>
+<% content_for :head do %>
+  <%= display_meta_tags site: 'Venshop', title: 'Home' %>
+  <%= display_meta_tags keywords: %w[venshop Venshop categories amazon] %>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-offset-0 col-md-4">

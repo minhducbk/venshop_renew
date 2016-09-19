@@ -7,9 +7,10 @@
 <div class = "recommened_list col-md-offset-2">
   <% list_items.each do |item| %>
     <div class= "row">
-      <div class= "col-md-2 col-md-offset-0">
-        <img src= "<%= item["image_url"]%>"
-          height = "71px" width = "38px">
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+          <img src="<%= item["image_url"]%>" class="image"/>
+        </div>
       </div>
       <div class = "col-md-8 col-md-offset-0">
         <%= link_to item["name"], item_path(item["id"]) %>
