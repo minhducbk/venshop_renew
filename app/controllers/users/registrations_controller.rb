@@ -13,10 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
 
     if current_user.role == User.role_users[:customer]
-      cart = Cart.find_by(user_id: current_user.id)
-      unless cart.present?
-        cart = Cart.create(user_id: current_user.id)
-      end
+      cart = current_user.cart
+      cart = Cart.create(user_id: current_user.id) if cart.blank?
       if cookies[:cart].present?
         list_items = JSON.parse(cookies[:cart])
         list_items.each do |record|

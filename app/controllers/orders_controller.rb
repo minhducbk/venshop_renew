@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def create
-    cart = Cart.find_by(user_id: current_user.id)
+    cart = current_user.cart
     order = Order.create(user_id: current_user.id, status: Order.order_statuses[:New])
     cart.cart_items.each do |cart_item|
       OrderItem.create(order_id: order.id, item_id: cart_item.item_id, quantity: cart_item.quantity)
