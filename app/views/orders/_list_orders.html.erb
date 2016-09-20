@@ -34,12 +34,11 @@
         <%= get_name_products(order) %>
       </div>
       <div class="quantity col-md-offset-0 col-md-2">
-        <%= get_subtotal(convert_order_to_array(order)) %>
+        <%= get_subtotal(convert_order_to_array_of_hash(order)) %>
       </div>
       <div class="quantity col-md-offset-0 col-md-2">
         <%= Order.order_statuses.key(order.status) %>
       </div>
-
     </div>
     <hr/>
   <% end %>

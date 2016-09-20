@@ -30,18 +30,15 @@ task vacuum: :environment do
             price = Random.new.rand(500.0).to_f.round(2)
             stock = Random.new.rand(500).to_i
           end
-          if item['LargeImage'].present? || item['SmallImage'].present? ||
-             item['MediumImage'].present?
-            image_url ||= item['LargeImage']['URL']
-            image_url ||= item['MediumImage']['URL']
-            image_url ||= item['SmallImage']['URL']
-          else
-            image_url = Settings.no_image_link
-          end
+          image_url ||= item['LargeImage']['URL']
+          image_url ||= item['MediumImage']['URL']
+          image_url ||= item['SmallImage']['URL']
+          image_url ||= Settings.no_image_link
+
           description = ''
           if item['ItemAttributes']['Feature'].present?
             if item['ItemAttributes']['Feature'].is_a?(Array)
-              item['ItemAttributes']['Feature'].inject do |descript, s|
+              description = item['ItemAttributes']['Feature'].inject('') do |descript, s|
                 descript + '\n' + s
               end
             else
