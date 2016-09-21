@@ -6,6 +6,7 @@ module MySolr
 
   def self.query(keyword)
     solr = MySolr::connect
+    keyword = keyword.gsub!(/[^0-9A-Za-z]/, '')
     solr.get 'select', params: {
       q: "name:*#{keyword}*",
       indent: 'on',
