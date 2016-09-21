@@ -2,8 +2,8 @@
   <%= display_meta_tags site: 'Venshop', title: "Member Login" %>
   <%= display_meta_tags keywords: %w[venshop Venshop login amazon ] %>
 <% end %>
-<div class = "container">
-  <div class = "col-md-6 col-md-offset-3">
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
     <% flash.each do |key, value| %>
       <% if key == "notice" %>
         <div class="alert alert-success"><%= value %></div>

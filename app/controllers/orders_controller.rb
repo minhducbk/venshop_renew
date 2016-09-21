@@ -33,13 +33,13 @@ class OrdersController < ApplicationController
     @order = Order.includes(:order_items).find_by(id: params[:id])
     @order_items = convert_order_to_array_of_hash(@order)
     update_status = Order.order_statuses[params[:update_order][:status]]
-    new_status = Order.order_statuses[:new_status]
-    cancel_status = Order.order_statuses[:cancel_status]
+    new_group = Order.order_statuses[:new_group]
+    cancel_group = Order.order_statuses[:cancel_group]
 
-    if new_status.include?(@order.status) && cancel_status.include?(update_status)
+    if new_group.include?(@order.status) && cancel_group.include?(update_status)
       after_cancel(@order)
       @order.update_columns(status: update_status)
-    elsif new_status.include?(update_status) && cancel_status.include?(@order.status)
+    elsif new_group.include?(update_status) && cancel_group.include?(@order.status)
       if satisfy_convert_to_new_status? @order
         @order.update_columns(status: update_status)
       else
