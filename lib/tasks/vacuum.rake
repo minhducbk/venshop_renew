@@ -30,9 +30,9 @@ task vacuum: :environment do
             price = Random.new.rand(500.0).to_f.round(2)
             stock = Random.new.rand(500).to_i
           end
-          image_url ||= item['LargeImage']['URL']
-          image_url ||= item['MediumImage']['URL']
-          image_url ||= item['SmallImage']['URL']
+          image_url ||= item['LargeImage']['URL'] if item['LargeImage'].present?
+          image_url ||= item['MediumImage']['URL'] if item['MediumImage'].present?
+          image_url ||= item['SmallImage']['URL'] if item['SmallImage'].present?
           image_url ||= Settings.no_image_link
 
           description = ''
@@ -54,7 +54,7 @@ task vacuum: :environment do
               name: item['ItemAttributes']['Title'],
               price: price,
               amazon_id: item['ASIN'],
-              image_url: image_url,
+              remote_picture_url: image_url,
               stock: stock,
               category_id: category.id,
               description: description

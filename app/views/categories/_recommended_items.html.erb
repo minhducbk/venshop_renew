@@ -11,7 +11,7 @@
         <div class="col-sm-6 col-md-4">
           <%= recommended_items[i*3 + j].name %>
           <br />
-          <%= link_to(image_tag(recommended_items[i*3 + j].image_url,
+          <%= link_to(image_tag(recommended_items[i*3 + j].picture_url,
             width: 38, height: 71), item_path(recommended_items[i*3 + j].id)) %>
         </div>
       <% end %>

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="header_catalog col-md-offset-0 col-md-12 ">
-    <%= is_admin ? "All orders" : "My orders" %>
+    <%= is_admin? ? "All orders" : "My orders" %>
   </div>
 </div>
 <div class="recommened_list col-md-offset-1 col-md-11">
@@ -31,10 +31,10 @@
         <%= order.created_at.strftime("%Y-%m-%d") %>
       </div>
       <div class="quantity col-md-offset-0 col-md-4">
-        <%= get_name_products(order) %>
+        <%= order.get_name_products %>
       </div>
       <div class="quantity col-md-offset-0 col-md-2">
-        <%= get_subtotal(convert_order_to_array_of_hash(order)) %>
+        <%= get_subtotal(order.convert_to_array_of_hash) %>
       </div>
       <div class="quantity col-md-offset-0 col-md-2">
         <%= Order.order_statuses.key(order.status) %>

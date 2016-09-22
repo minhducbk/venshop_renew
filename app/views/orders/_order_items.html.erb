@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col-md-offset-0 col-md-1">
         <%= link_to({controller: "items", action:"show", id: order_item[:item].id}) do %>
-          <img src="<%= order_item[:item].image_url %>"
+          <img src="<%= order_item[:item].picture_url %>"
             height="71px" width="38px">
         <% end %>
       </div>
@@ -48,7 +48,7 @@
     <div class="col-md-offset-0 col-md-7">
     </div>
     <div class="subtotal col-md-offset-0 col-md-5">
-      <strong>Subtotal (<%= get_order_quantity(order) %> items):</strong>
+      <strong>Subtotal (<%= order.get_quantity %> items):</strong>
       <span class="price"> $<%= get_subtotal(order_items) %> </span>
     </div>
   </div>
@@ -57,7 +57,7 @@
   <div class="row">
     <div class="col-md-offset-0 col-md-8">
     </div>
-    <% if is_admin %>
+    <% if is_admin? %>
       <div class="col-md-offset-0 col-md-4">
         <%= form_for(:update_order, url: order_path(order.id), method: :patch) do |f| %>
           <div class="field">

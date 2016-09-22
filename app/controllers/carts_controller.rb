@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
   include CartConcern
-  # skip_before_action :verify_authenticity_token
 
   def show
     if request.xhr?
@@ -10,24 +9,22 @@ class CartsController < ApplicationController
         format.js {}
       end
     else
-      if user_signed_in?
-        enough_stock_to_sale_and_reload?(@cart)
-        @cart_items = cart.cart_items.map do |cart_item|
-          {
-            item: Item.find_by(id: cart_item.item_id),
-            quantity: cart_item.quantity
-          }
-        end
-      else
-        cart = cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
-        enough_stock_to_sale_and_reload?(@cart)
-        @cart_items = cart.map do |item_id, quantity|
-          {
-            item: Item.find_by(id: item_id.to_i),
-            quantity: quantity.to_i
-          }
-        end
-      end
+      enough_stock_to_sale_and_reload?(@cart)
+      @cart_items = if user_signed_in?
+                      @cart.cart_items.map do |cart_item|
+                        {
+                          item: Item.find_by(id: cart_item.item_id),
+                          quantity: cart_item.quantity
+                        }
+                      end
+                    else
+                      @cart_items = @cart.map do |item_id, quantity|
+                        {
+                          item: Item.find_by(id: item_id.to_i),
+                          quantity: quantity.to_i
+                        }
+                      end
+                    end
       @subtotal = get_subtotal(@cart_items)
       @reload = params[:reload].present?
     end

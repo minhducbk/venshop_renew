@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
     param.delete('category')
     @item = Item.new(param)
     if @item.save
-      @item.update_columns(image_url: @item.picture_url) if @item.picture
       flash.now[:success] = 'Post successful'
       redirect_to category_path(category.id)
     else

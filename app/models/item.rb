@@ -20,4 +20,13 @@ class Item < ActiveRecord::Base
       api_secret: ENV['api_secret']
     }
   end
+
+  validate :picture_size_validation
+
+  # ... ...
+  private
+
+  def picture_size_validation
+    errors[:picture] << "should be less than 5MB" if picture.size > 5.megabytes
+  end
 end
