@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @list_orders = current_user.is_admin? ? Order.all :
                    Order.where("user_id = ?", current_user.id)
     @list_orders = Kaminari.paginate_array(@list_orders)
-                           .page(params[:page]).per(10)
+                           .page(params[:page]).per(Settings.entries_per_page)
   end
 
   def show

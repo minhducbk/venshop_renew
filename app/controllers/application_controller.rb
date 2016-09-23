@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def get_subtotal(list_items)
     list_items.inject(0) do |subtotal, list_item|
-      subtotal + list_item[:item].price*list_item[:quantity]
+      subtotal + list_item[:item].price * list_item[:quantity]
     end.round(2)
   end
 end
