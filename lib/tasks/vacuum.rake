@@ -11,7 +11,7 @@ task vacuum: :environment do
 
   categories.each do |category|
     (1..10).each do |page|
-      begin
+      #begin
         response = request.item_search(
           query: {
             'SearchIndex' => category.name,
@@ -62,9 +62,9 @@ task vacuum: :environment do
             item_new.save(validate: false)
           end
         end
-      rescue
-        break
-      end
+      # rescue
+      #   break
+      # end
     end
   end
 end

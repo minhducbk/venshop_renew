@@ -18,7 +18,7 @@
               <% else %>
                 <% if @cart.present? %>
                   <li>
-                    <%= render "layouts/_parts/cart", {cart: @cart}%>
+                    <%= render "layouts/_parts/cart", {cart: @cart} %>
                   </li>
                 <% end %>
               <% end %>
@@ -38,13 +38,13 @@
               </li>
             <% else %>
               <li>
-                <%= render "layouts/_parts/cart", {cart: @cart}%>
+                <%= render "layouts/_parts/cart", {cart: @cart} %>
               </li>
               <li>
-                <%= link_to "Login", new_user_session_path%>
+                <%= link_to "Login", new_user_session_path %>
               </li>
               <li>
-                <%= link_to "Register", new_user_registration_path%>
+                <%= link_to "Register", new_user_registration_path %>
               </li>
             <% end %>
           </ul>

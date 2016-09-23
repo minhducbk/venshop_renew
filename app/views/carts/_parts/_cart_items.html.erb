@@ -35,7 +35,7 @@
         </div>
         <br />
         <div>
-          <%= link_to "Delete", cart_path(item_id: cart_item[:item].id), method: :delete %>
+          <%= link_to "Delete", item_carts_path(item_id: cart_item[:item].id), method: :delete %>
         </div>
       </div>
       <div class="col-md-offset-0 col-md-3">
@@ -75,7 +75,7 @@
     <div class="col-md-offset-0 col-md-5">
       <% if cart_items.present? %>
         <% if user_signed_in? %>
-          <%= link_to "Checkout", cart_path, method: :get, remote: true,
+          <%= link_to "Checkout", proceed_checkout_path, method: :get, remote: true,
             class: "btn checkout2", data: { confirm: 'Are you sure?' } %>
         <% else %>
           <%= link_to "Proceed to checkout", new_user_session_path, class: "btn checkout"%>

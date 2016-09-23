@@ -36,4 +36,14 @@ class ItemCartsController < ApplicationController
     end
     redirect_to cart_path
   end
+
+  def destroy
+    if user_signed_in?
+      CartItem.find_by(item_id: params[:item_id].to_i, cart_id: @cart.id).destroy
+    else
+      @cart.delete(params[:item_id].to_s)
+      store_cart_to_cookie(@cart)
+    end
+    redirect_to cart_path
+  end
 end

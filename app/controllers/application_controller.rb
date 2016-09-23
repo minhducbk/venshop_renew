@@ -26,8 +26,4 @@ class ApplicationController < ActionController::Base
       subtotal + list_item[:item].price*list_item[:quantity]
     end.round(2)
   end
-
-  def is_admin?
-    current_user.role == User.role_users[:admin]
-  end
 end

@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   }
   resources :items, only: [:new, :show, :create]
 
-  resources :item_carts, only: :create
+  post '/item_carts' => 'item_carts#create', as: :item_carts
+  delete '/item_carts' => 'item_carts#destroy'
 
-  get '/carts/(.:format)' => 'carts#show', as: :cart
-  put '/carts/(.:format)' => 'carts#update'
-  delete '/carts/(.:format)' => 'carts#destroy'
+  get '/carts/proceed_checkout' => 'carts#proceed_checkout', as: :proceed_checkout
+  get '/carts/' => 'carts#show', as: :cart
+  put '/carts/' => 'carts#update'
+  delete '/carts/' => 'carts#destroy'
 
   get '/order/create' => 'orders#create', as: :order_create
   resources :orders, except: :create
