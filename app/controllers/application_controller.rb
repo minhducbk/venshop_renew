@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :get_categories
   before_action :get_cart
-  helper_method :get_subtotal, :convert_order_to_array_of_hash
+  helper_method :get_subtotal
 
   private
 
