@@ -6,9 +6,7 @@ module CartsHelper
         quantity += cart_item.quantity.to_i
       end
     else
-      cart.each do |key, value|
-        quantity += value.to_i
-      end
+      quantity = cart.values.sum
     end
     quantity
   end

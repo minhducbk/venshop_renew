@@ -1,4 +1,5 @@
 $("#quantity_<%= @item_id.to_s %>").attr("selected", <%= @quantity.to_i %>);
+$(".show_cart").html("<%= get_cart_quantity(@cart).to_s %> Cart");
 $("#subtotal").html("$<%= @subtotal.to_s %>");
 $(".subtotal_quantity").attr("value", <%= @subtotal.to_f %>);
 <% if get_cart_quantity(@cart) > 1 %>
