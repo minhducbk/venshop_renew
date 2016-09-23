@@ -13,18 +13,18 @@ class Order < ActiveRecord::Base
 
   def after_cancel
     self.order_items.each do |order_item|
-      item = Item.find_by(id: order_item.item_id)
+      item = order_item.item
       item.update_columns(stock: (item.stock + order_item.quantity.to_i))
     end
   end
 
-  def satisfy_convert_to_new_status?
+  def satisfy_convert_to_new_group?
     self.order_items.each do |order_item|
-      item = Item.find_by(id: order_item.item_id)
+      item = order_item.item
       return false if item.stock < order_item.quantity.to_i
     end
     self.order_items.each do |order_item|
-      item = Item.find_by(id: order_item.item_id)
+      item = order_item.item
       item.update_columns(stock: (item.stock - order_item.quantity.to_i))
     end
     true
@@ -33,7 +33,7 @@ class Order < ActiveRecord::Base
   def convert_to_array_of_hash
     self.order_items.map do |order_item|
       {
-        item: Item.find_by(id: order_item.item_id),
+        item: order_item.item,
         quantity: order_item.quantity.to_i
       }
     end

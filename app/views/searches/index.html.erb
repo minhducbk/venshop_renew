@@ -9,11 +9,11 @@
   <br />
   <div class = "row">
     <div class = "col-md-offset-0 col-md-3">
-      <%= render "categories/catalog", { categories: @categories}%>
+      <%= render "categories/_parts/catalog", { categories: @categories}%>
     </div>
     <div class = "col-md-offset-0 col-md-9">
       <div>
-        <%= render "searches/result_items",
+        <%= render "searches/_parts/result_items",
           { list_items: @list_items, key: @key}%>
       </div>
       <hr>

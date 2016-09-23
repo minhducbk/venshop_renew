@@ -14,7 +14,7 @@
   <br />
   <div class="row">
     <div class="col-md-offset-0 col-md-3">
-      <%= render "categories/catalog", { categories: @categories} %>
+      <%= render "categories/_parts/catalog", { categories: @categories} %>
     </div>
     <div class="col-md-offset-0 col-md-9">
       <div class="row">
@@ -35,7 +35,7 @@
           <div class="row">
             <% unless user_signed_in? && (current_user.role == User.role_users[:admin])%>
               <% if @item.stock > 0 %>
-                <%= render "items/add_to_cart", {stock: @item.stock, item_id: @item.id,
+                <%= render "items/_parts/add_to_cart", {stock: @item.stock, item_id: @item.id,
                   hidden_quantity: nil} %>
               <% else %>
                 <div class="out_of_stock">
@@ -57,7 +57,7 @@
       <br />
 
       <div class="row">
-        <%= render 'items/share', {item: @item}%>
+        <%= render 'items/_parts/share', {item: @item}%>
       </div>
     </div>
   </div>

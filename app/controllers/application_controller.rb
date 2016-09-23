@@ -17,14 +17,14 @@ class ApplicationController < ActionController::Base
     @cart = if user_signed_in?
               current_user.cart
             else
-              @cart = cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
+              cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
             end
   end
 
   def get_subtotal(list_items)
-    (list_items.inject(0) do |subtotal, list_item|
+    list_items.inject(0) do |subtotal, list_item|
       subtotal + list_item[:item].price*list_item[:quantity]
-    end).round(2)
+    end.round(2)
   end
 
   def is_admin?

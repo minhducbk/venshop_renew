@@ -8,6 +8,7 @@ module MySolr
 
   def self.query(keyword, page)
     solr = MySolr::connect
+    keyword = keyword.gsub(/[+\-\&\&||!(){}\[\]^"~*?:\\]/){ |s| "\\" + s }
     solr.get 'select', params: {
       q: "name:*#{keyword}*",
       indent: 'on',

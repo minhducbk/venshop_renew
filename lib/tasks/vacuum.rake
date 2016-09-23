@@ -39,7 +39,7 @@ task vacuum: :environment do
           if item['ItemAttributes']['Feature'].present?
             if item['ItemAttributes']['Feature'].is_a?(Array)
               description = item['ItemAttributes']['Feature'].inject('') do |descript, s|
-                descript + '\n' + s
+                descript + "\n" + s
               end
             else
               description = item['ItemAttributes']['Feature']

@@ -17,15 +17,15 @@
   <br />
   <div class="row">
     <div class="col-md-offset-0 col-md-3">
-      <%= render "categories/catalog", { categories: @categories}%>
+      <%= render "categories/_parts/catalog", { categories: @categories}%>
     </div>
     <div class="col-md-offset-0 col-md-9">
       <div>
-        <%= render "categories/recommended_items", { recommended_items: @recommended_items}%>
+        <%= render "categories/_parts/recommended_items", { recommended_items: @recommended_items}%>
       </div>
       <br />
       <div>
-        <%= render "categories/newest_items", { newest_items: @newest_items}%>
+        <%= render "categories/_parts/newest_items", { newest_items: @newest_items}%>
       </div>
     </div>
   </div>

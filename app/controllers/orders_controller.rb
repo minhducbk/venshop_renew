@@ -2,13 +2,13 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.create(user_id: current_user.id, status: Order.order_statuses[:New])
-    cart_items = @cart.cart_items.map do |cart_item|
+    order_items = @cart.cart_items.map do |cart_item|
       item = Item.find_by(id: cart_item.item_id)
       item.update_columns(stock: (item.stock - cart_item.quantity))
-      order.cart_items.build(item_id: cart_item.item_id, quantity: cart_item.quantity)
+      order.order_items.build(item_id: cart_item.item_id, quantity: cart_item.quantity)
     end
 
-    cart_items.map {|cart_item| cart_item.save}
+    order_items.map(&:save)
     @cart.destroy
     Cart.create(user_id: current_user.id)
 
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
       @order.after_cancel
       @order.update_columns(status: update_status)
     elsif new_group.include?(update_status) && cancel_group.include?(@order.status)
-      if @order.satisfy_convert_to_new_status?
+      if @order.satisfy_convert_to_new_group?
         @order.update_columns(status: update_status)
       else
         return redirect_to order_path(@order.id), notice: 'Not enough stock to sale'

@@ -11,14 +11,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right nav-custom">
             <% if user_signed_in? %>
-              <% if is_admin? %>
+              <% if current_user.is_admin? %>
                 <li>
                   <%= link_to "Post Item", new_item_path %>
                 </li>
               <% else %>
                 <% if @cart.present? %>
                   <li>
-                    <%= render "layouts/cart", {cart: @cart}%>
+                    <%= render "layouts/_parts/cart", {cart: @cart}%>
                   </li>
                 <% end %>
               <% end %>
@@ -29,7 +29,7 @@
                     <%= link_to "Edit Profile", edit_user_registration_path %>
                   </li>
                   <li class="headr">
-                    <%= link_to is_admin? ? "All Orders" : "My Orders", orders_path %>
+                    <%= link_to current_user.is_admin? ? "All Orders" : "My Orders", orders_path %>
                   </li>
                   <li class="headr">
                     <%= link_to "Logout", destroy_user_session_path, method: :DELETE %>
@@ -38,7 +38,7 @@
               </li>
             <% else %>
               <li>
-                <%= render "layouts/cart", {cart: @cart}%>
+                <%= render "layouts/_parts/cart", {cart: @cart}%>
               </li>
               <li>
                 <%= link_to "Login", new_user_session_path%>

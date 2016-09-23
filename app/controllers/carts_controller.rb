@@ -18,7 +18,7 @@ class CartsController < ApplicationController
                         }
                       end
                     else
-                      @cart_items = @cart.map do |item_id, quantity|
+                      @cart.map do |item_id, quantity|
                         {
                           item: Item.find_by(id: item_id.to_i),
                           quantity: quantity.to_i
@@ -40,11 +40,11 @@ class CartsController < ApplicationController
         item_cart = CartItem.find_by(cart_id: @cart.id, item_id: @item_id)
         @subtotal = (@subtotal - (item_cart.quantity * item.price) +
                   (@quantity*item.price)).round(2)
-        item_cart.update_column(:quantity, params[:quantity][:quantity].to_i )
+        item_cart.update_column(:quantity, @quantity )
       else
         @subtotal = (@subtotal - (@cart["#{@item_id}"].to_i * item.price) +
                   (@quantity*item.price)).round(2)
-        @cart["#{@item_id}"] = params[:quantity][:quantity].to_i
+        @cart["#{@item_id}"] = @quantity
         store_cart_to_cookie(@cart)
       end
       format.html {}

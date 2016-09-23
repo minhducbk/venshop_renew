@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   put '/carts/(.:format)' => 'carts#update'
   delete '/carts/(.:format)' => 'carts#destroy'
 
-  resources :orders
+  get '/order/create' => 'orders#create', as: :order_create
+  resources :orders, except: :create
 
   resources :searches, only: :index
 

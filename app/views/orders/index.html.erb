@@ -6,17 +6,17 @@
   <div class="row">
     <div class="col-md-offset-0 col-md-4">
       <%= link_to "Home", root_path%> >
-      <%= is_admin? ? "All orders" : "My orders" %>
+      <%= current_user.is_admin? ? "All orders" : "My orders" %>
     </div>
   </div>
   <br />
   <div class="row">
     <div class="col-md-offset-0 col-md-3">
-      <%= render "categories/catalog", { categories: @categories}%>
+      <%= render "categories/_parts/catalog", { categories: @categories}%>
     </div>
     <div class="col-md-offset-0 col-md-9">
       <div>
-        <%= render "orders/list_orders", { list_orders: @list_orders}%>
+        <%= render "orders/_parts/list_orders", { list_orders: @list_orders}%>
       </div>
       <%= paginate @list_orders %>
       <%= page_entries_info @list_orders %>

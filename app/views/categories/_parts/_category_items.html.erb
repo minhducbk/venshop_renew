@@ -19,7 +19,7 @@
         <br />
         <% unless user_signed_in? && (current_user.role == User.role_users[:admin])%>
           <% if item.stock > 0 %>
-            <%= render 'items/add_to_cart', {item_id: item.id, stock: item.stock,
+            <%= render 'items/_parts/add_to_cart', {item_id: item.id, stock: item.stock,
               hidden_quantity: true}%>
           <% else %>
             <div class="out_of_stock">
