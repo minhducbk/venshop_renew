@@ -16,7 +16,6 @@ gem 'config'
 gem 'masonry-rails'
 gem 'kaminari'
 gem 'sidekiq'
-gem 'sinatra'
 gem 'redis-rails'
 gem 'rubocop'
 gem 'rsolr'
@@ -25,8 +24,6 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'meta-tags'
 gem 'thin'
-# gem 'capistrano-passenger'
-# gem 'therubyracer',  platforms: :ruby
 
 group :development, :test do
   gem 'byebug'
