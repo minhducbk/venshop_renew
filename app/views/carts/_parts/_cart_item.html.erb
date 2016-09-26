@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-offset-0 col-md-1">
+    <%= link_to({controller: "items", action:"show", id: cart_item[:item].id}) do %>
+      <img src="<%= cart_item[:item].picture_url %>"
+        height="71px" width="38px">
+    <% end %>
+  </div>
+  <div class="col-md-offset-0 col-md-6">
+    <div>
+      <%= link_to cart_item[:item].name, item_path(cart_item[:item].id) %>
+    </div>
+    <br />
+    <div>
+      <%= link_to "Delete", cart_items_path(item_id: cart_item[:item].id), method: :delete %>
+    </div>
+  </div>
+  <div class="col-md-offset-0 col-md-3">
+    <span class="price">
+      $<%= cart_item[:item].price%>
+    </span>
+  </div>
+  <div class="col-md-offset-0 col-md-2">
+    <%= form_for("quantity", url: cart_path, method: :put, remote: true) do |f| %>
+      <%= f.hidden_field :item_id, value: cart_item[:item].id %>
+      <%= f.hidden_field :subtotal, value: cart_subtotal, class: "subtotal_quantity" %>
+      <% if cart_item[:item].stock > 30 %>
+        <%= f.select :quantity, 1..30, {selected: cart_item[:quantity]},
+          {id: "quantity_#{cart_item[:item].id}", onchange: "$(this).closest('form').submit();"}%>
+      <% else %>
+        <%= f.select :quantity, 1..cart_item[:item].stock, {selected: cart_item[:quantity]},
+          {id: "quantity_#{cart_item[:item].id}", onchange: "$(this).closest('form').submit();"}%>
+      <% end %>
+    <% end %>
+  </div>
+</div>

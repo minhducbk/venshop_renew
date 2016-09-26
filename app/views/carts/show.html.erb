@@ -5,18 +5,18 @@
 <div class="container">
   <div class="row">
     <div class="col-md-offset-0 col-md-4">
-      <%= link_to "Home", root_path%> > My cart
+      <%= link_to "Home", root_path %> > My cart
     </div>
   </div>
   <br />
   <div class="row">
     <div class="col-md-offset-0 col-md-3">
-      <%= render "categories/_parts/catalog", { categories: @categories}%>
+      <%= render "categories/_parts/catalog", { categories: @categories} %>
     </div>
     <div class="col-md-offset-0 col-md-9">
       <div>
         <%= render "carts/_parts/cart_items", { cart_items: @cart_items, cart: @cart,
-          reload: @reload, subtotal: @subtotal}%>
+          reload: @reload, cart_subtotal: @cart_subtotal} %>
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
     response = MySolr::query(@key, page.to_i)
 
     list_id_items = response['response']['docs'].map { |record| record['id'].to_i }
-    list_items = list_id_items.present? ? Item.where("id in (#{list_id_items.to_s[1..-2]})") : []
+    list_items = list_id_items.present? ? Item.where(id: list_id_items) : []
     @list_items= Kaminari.paginate_array(list_items, total_count: response['response']['numFound'])
                          .page(params[:page]).per(Settings.entries_per_page)
   end

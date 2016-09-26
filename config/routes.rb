@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   }
   resources :items, only: [:new, :show, :create]
 
-  post '/item_carts' => 'item_carts#create', as: :item_carts
-  delete '/item_carts' => 'item_carts#destroy'
+  post '/cart_items' => 'cart_items#create', as: :cart_items
+  delete '/cart_items' => 'cart_items#destroy'
 
   get '/carts/proceed_checkout' => 'carts#proceed_checkout', as: :proceed_checkout
   get '/carts/' => 'carts#show', as: :cart

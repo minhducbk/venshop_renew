@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     @cart = if user_signed_in?
               current_user.cart
             else
-              cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
+              cookies[:cart].present? ? JSON.parse(cookies[:cart]).to_h : {}
             end
   end
 

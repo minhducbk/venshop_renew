@@ -1,7 +1,7 @@
-$("#quantity_<%= @item_id.to_s %>").attr("selected", <%= @quantity.to_i %>);
+$("#quantity_<%= @item.id.to_s %>").attr("selected", <%= @cart_item_quantity %>);
 $(".show_cart").html("<%= get_cart_quantity(@cart).to_s %> Cart");
-$("#subtotal").html("$<%= @subtotal.to_s %>");
-$(".subtotal_quantity").attr("value", <%= @subtotal.to_f %>);
+$("#subtotal").html("$<%= @cart_subtotal.to_s %>");
+$(".subtotal_quantity").attr("value", <%= @cart_subtotal %>);
 <% if get_cart_quantity(@cart) > 1 %>
   $("#count_items").html("<%= get_cart_quantity(@cart).to_s %> items");
 <% else %>

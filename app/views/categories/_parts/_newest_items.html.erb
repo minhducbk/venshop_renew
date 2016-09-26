@@ -5,20 +5,10 @@
 </div>
 <br />
 <br />
-<div class="recommened_list col-md-offset-1">
+<div class="newest_list">
   <% newest_items.each do |item| %>
-    <div class="row">
-      <div class="col-sm-6 col-md-2">
-        <div class="thumbnail">
-          <img src="<%= item.picture_url%>" height="71px" width="38px" class="image">
-        </div>
-      </div>
-      <div class="col-md-9 col-md-offset-0">
-        <%= link_to item.name, item_path( item.id) %>
-        <br />
-        <strong> Price </strong>: $<%= item.price %>
-      </div>
-    </div>
+    <%= render 'categories/_parts/newest_item', {item: item} %>
     <br />
   <% end %>
+  <br />
 </div>

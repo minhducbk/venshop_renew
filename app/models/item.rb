@@ -1,17 +1,21 @@
 class Item < ActiveRecord::Base
-  attr_accessor :picture
   belongs_to :category
   has_many :cart_items, dependent: :destroy
   has_many :order_items, dependent: :destroy
 
+  attr_accessor :picture
   mount_uploader :picture, PictureUploader,
                  cloudinary_credentials:
                   Proc.new { |a| a.instance.cloudinary_credentials }
+
   validates :name, presence: true
   validates :price, presence: true
   validates :stock, presence: true
   validates :description, presence: true
   validates :picture, presence: true
+  validate :picture_size_validation
+
+  paginates_per Settings.entries_per_page
 
   def cloudinary_credentials
     {
@@ -21,9 +25,9 @@ class Item < ActiveRecord::Base
     }
   end
 
-  validate :picture_size_validation
+  scope :recommended, -> (limit) { order("updated_at desc").limit(limit) }
+  scope :newest, -> (limit) { order("created_at desc").limit(limit) }
 
-  # ... ...
   private
 
   def picture_size_validation

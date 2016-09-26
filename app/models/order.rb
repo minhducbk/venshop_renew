@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
     new_group: [0, 1, 2 , 3],
     cancel_group: [4]
   }
+  paginates_per Settings.entries_per_page
 
   def after_cancel
     order_items.each do |order_item|
@@ -18,7 +19,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def satisfy_convert_to_new_group?
+  def satisfy_convert_from_cancle_to_new_group?
     order_items.each do |order_item|
       item = order_item.item
       return false if item.stock < order_item.quantity.to_i

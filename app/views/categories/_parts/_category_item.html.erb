@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="<%= item.picture_url%>" class="image">
+    </div>
+  </div>
+  <div class="col-md-9 col-md-offset-0">
+    <%= link_to item.name, item_path( item.id) %>
+    <br />
+    <strong> Price </strong>: $<%= item.price%>
+    <br />
+    <% unless user_signed_in? && (current_user.role == User.role_users[:admin])%>
+      <% if item.stock > 0 %>
+        <%= render 'items/_parts/add_to_cart', {item_id: item.id, stock: item.stock,
+          hidden_quantity: true}%>
+      <% else %>
+        <div class="out_of_stock">
+          Out of stock
+        </div>
+      <% end %>
+    <% else %>
+      Stock: <span class="out_of_stock"><%= item.stock %></span>
+    <% end %>
+  </div>
+</div>

@@ -4,14 +4,15 @@ class ItemsController < ApplicationController
   end
 
   def create
-    param = item_params
-    category = Category.find_by(name: param[:category])
-    param[:category_id] = category.id
-    param.delete('category')
-    @item = Item.new(param)
+    new_item_param = post_item_params
+    category = Category.find_by(name: new_item_param[:category])
+    new_item_param[:category_id] = category.id
+    new_item_param.delete('category')
+    @item = Item.new(new_item_param)
+
     if @item.save
       flash.now[:success] = 'Post successful'
-      redirect_to category_path(category.id)
+      redirect_to item_path(@item.id)
     else
       render 'new'
     end
@@ -23,7 +24,13 @@ class ItemsController < ApplicationController
 
   private
 
-  def item_params
-    params.require(:post_item).permit(:name, :price, :stock, :category, :description, :picture)
+  def post_item_params
+    params.require(:post_item).permit(:name,
+                                      :price,
+                                      :stock,
+                                      :category,
+                                      :description,
+                                      :picture
+                                      )
   end
 end

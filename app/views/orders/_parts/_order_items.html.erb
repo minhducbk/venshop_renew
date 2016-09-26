@@ -22,25 +22,7 @@
   </div>
   <hr/>
   <% order_items.each do |order_item| %>
-    <div class="row">
-      <div class="col-md-offset-0 col-md-1">
-        <%= link_to({controller: "items", action:"show", id: order_item[:item].id}) do %>
-          <img src="<%= order_item[:item].picture_url %>"
-            height="71px" width="38px">
-        <% end %>
-      </div>
-      <div class="col-md-offset-0 col-md-6">
-        <div>
-          <%= link_to order_item[:item].name, item_path(order_item[:item].id) %>
-        </div>
-      </div>
-      <div class="col-md-offset-0 col-md-3">
-        <span class="price">$<%= order_item[:item].price%></span>
-      </div>
-      <div class="col-md-offset-0 col-md-2">
-        <%=order_item[:quantity]%>
-      </div>
-    </div>
+    <%= render 'orders/_parts/order_item', {order_item: order_item} %>
     <hr/>
   <% end %>
 

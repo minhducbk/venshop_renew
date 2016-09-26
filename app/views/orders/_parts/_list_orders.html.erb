@@ -23,23 +23,7 @@
   </div>
   <hr/>
   <% list_orders.each do |order| %>
-    <div class="row">
-      <div class="col-md-offset-0 col-md-2">
-        <%= link_to order.id, order_path(order.id) %>
-      </div>
-      <div class="col-md-offset-0 col-md-2">
-        <%= order.created_at.strftime("%Y-%m-%d") %>
-      </div>
-      <div class="quantity col-md-offset-0 col-md-4">
-        <%= order.get_name_products %>
-      </div>
-      <div class="quantity col-md-offset-0 col-md-2">
-        <%= get_subtotal(order.convert_to_array_of_hash) %>
-      </div>
-      <div class="quantity col-md-offset-0 col-md-2">
-        <%= Order.order_statuses.key(order.status) %>
-      </div>
-    </div>
+    <%= render 'orders/_parts/order', {order: order} %>
     <hr/>
   <% end %>
 </div>
