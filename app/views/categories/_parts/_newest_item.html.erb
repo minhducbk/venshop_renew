@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-sm-6 col-md-2">
     <div class="thumbnail">
-      <img src="<%= item.picture_url%>" height="71px" width="38px" class="image">
+      <img src="<%= newest_item.picture_url%>" height="71px" width="38px" class="image">
     </div>
   </div>
   <div class="col-md-9 col-md-offset-0">
-    <%= link_to item.name, item_path( item.id) %>
+    <%= link_to newest_item.name, item_path( newest_item.id) %>
     <br />
-    <strong> Price </strong>: $<%= item.price %>
+    <strong> Price </strong>: $<%= newest_item.price %>
   </div>
 </div>

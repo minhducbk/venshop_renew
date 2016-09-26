@@ -1,25 +1,27 @@
 <div class="row">
   <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-      <img src="<%= item.picture_url%>" class="image">
+      <img src="<%= category_item.picture_url%>" class="image">
     </div>
   </div>
   <div class="col-md-9 col-md-offset-0">
-    <%= link_to item.name, item_path( item.id) %>
+    <%= link_to category_item.name, item_path( category_item.id) %>
     <br />
-    <strong> Price </strong>: $<%= item.price%>
+    <strong> Price </strong>: $<%= category_item.price%>
     <br />
     <% unless user_signed_in? && (current_user.role == User.role_users[:admin])%>
-      <% if item.stock > 0 %>
-        <%= render 'items/_parts/add_to_cart', {item_id: item.id, stock: item.stock,
-          hidden_quantity: true}%>
+      <% if category_item.stock > 0 %>
+        <%= render 'items/_parts/add_to_cart', {item_id: category_item.id,
+                                                stock: category_item.stock,
+                                                hidden_quantity: true
+                                                }%>
       <% else %>
         <div class="out_of_stock">
           Out of stock
         </div>
       <% end %>
     <% else %>
-      Stock: <span class="out_of_stock"><%= item.stock %></span>
+      Stock: <span class="out_of_stock"><%= category_item.stock %></span>
     <% end %>
   </div>
 </div>

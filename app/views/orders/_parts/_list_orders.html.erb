@@ -22,8 +22,5 @@
     </div>
   </div>
   <hr/>
-  <% list_orders.each do |order| %>
-    <%= render 'orders/_parts/order', {order: order} %>
-    <hr/>
-  <% end %>
+  <%= render partial:'orders/_parts/order', collection: list_orders %>
 </div>

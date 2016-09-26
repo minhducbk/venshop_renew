@@ -22,7 +22,7 @@
   </div>
   <hr/>
   <% cart_items.each do |cart_item| %>
-    <%= render 'carts/_parts/cart_item', {cart_subtotal: cart_subtotal, cart_item: cart_item} %>
+    <%= render 'carts/_parts/cart_item', collection: {cart_subtotal: cart_subtotal, cart_item: cart_item} %>
     <hr/>
   <% end %>
 

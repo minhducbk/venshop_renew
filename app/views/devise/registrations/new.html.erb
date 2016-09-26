@@ -35,7 +35,7 @@
           <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
         </div>
 
-        <%= f.hidden_field :role, value: User.role_users[:customer].to_i %>
+        <%= f.hidden_field :role, value: User.role_users[:customer] %>
         <br />
         <div class="actions">
           <%= f.submit "Sign up", class: 'btn btn-primary' %>

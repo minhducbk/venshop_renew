@@ -1,0 +1,7 @@
+<% content_for :head do %>
+  <%= display_meta_tags site: 'Venshop', title: title %>
+  <%= display_meta_tags keywords: (%w[venshop Venshop amazon ] + keywords) %>
+  <% if description.present? %>
+    <%= display_meta_tags description: description %>
+  <% end %>
+<% end %>

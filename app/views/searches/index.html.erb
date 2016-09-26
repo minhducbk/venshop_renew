@@ -1,20 +1,21 @@
-<% set_meta_tags title: 'Order Venshop' %>
-<% set_meta_tags keywords: %w[venshop Venshop search] %>
+<%= render 'layouts/_parts/meta_tags', {title: "Search Item", keywords: ["search", @key]
+                                        description: nil
+                                        } %>
 <div class = "container">
   <div class = "row">
     <div class = "col-md-offset-0 col-md-4">
-      <%= link_to "Home", root_path%> > Search result
+      <%= link_to "Home", root_path %> > Search result
     </div>
   </div>
   <br />
   <div class = "row">
     <div class = "col-md-offset-0 col-md-3">
-      <%= render "categories/_parts/catalog", { categories: @categories}%>
+      <%= render "categories/_parts/catalog", { categories: @categories} %>
     </div>
     <div class = "col-md-offset-0 col-md-9">
       <div>
         <%= render "searches/_parts/result_items",
-          { list_items: @list_items, key: @key}%>
+          { list_items: @list_items, key: @key} %>
       </div>
       <hr>
       <%= paginate @list_items %>

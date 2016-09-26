@@ -6,9 +6,6 @@
 <br />
 <br />
 <div class="newest_list">
-  <% newest_items.each do |item| %>
-    <%= render 'categories/_parts/newest_item', {item: item} %>
-    <br />
-  <% end %>
+  <%= render partial: 'categories/_parts/newest_item', collection: newest_items %>
   <br />
 </div>

@@ -5,8 +5,5 @@
 </div>
 <br />
 <div class="recommened_list">
-  <% items.each do |item| %>
-    <%= render 'categories/_parts/category_item', {item: item} %>
-    <br />
-  <% end %>
+  <%= render partial: 'categories/_parts/category_item', collection: category_items %>
 </div>

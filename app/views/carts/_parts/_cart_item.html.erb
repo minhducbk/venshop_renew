@@ -25,10 +25,10 @@
       <%= f.hidden_field :subtotal, value: cart_subtotal, class: "subtotal_quantity" %>
       <% if cart_item[:item].stock > 30 %>
         <%= f.select :quantity, 1..30, {selected: cart_item[:quantity]},
-          {id: "quantity_#{cart_item[:item].id}", onchange: "$(this).closest('form').submit();"}%>
+          {id: "quantity_#{cart_item[:item].id}", onchange: "$(this).closest('form').submit();"} %>
       <% else %>
         <%= f.select :quantity, 1..cart_item[:item].stock, {selected: cart_item[:quantity]},
-          {id: "quantity_#{cart_item[:item].id}", onchange: "$(this).closest('form').submit();"}%>
+          {id: "quantity_#{cart_item[:item].id}", onchange: "$(this).closest('form').submit();"} %>
       <% end %>
     <% end %>
   </div>

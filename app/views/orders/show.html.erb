@@ -1,7 +1,6 @@
-<% content_for :head do %>
-  <%= display_meta_tags site: 'Venshop', title: "Order" %>
-  <%= display_meta_tags keywords: %w[venshop Venshop order amazon ] %>
-<% end %>
+<%= render 'layouts/_parts/meta_tags', {title: "Order", keywords: ["order"],
+                                        description: nil
+                                        } %>
 <div class="container">
   <div class="row">
     <div class="col-md-offset-0 col-md-4">

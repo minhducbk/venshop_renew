@@ -1,8 +1,7 @@
-<% content_for :head do %>
-  <%= display_meta_tags site: 'Venshop', title: 'Home' %>
-  <%= display_meta_tags keywords: %w[venshop Venshop categories amazon] %>
-<% end %>
-
+<%= render 'layouts/_parts/meta_tags', {title: "Home",
+                                        keywords: ["Home", "categories"],
+                                        description: nil
+                                        } %>
 <div class="container">
   <div class="row">
     <div class="col-md-offset-0 col-md-4">
@@ -17,15 +16,15 @@
   <br />
   <div class="row">
     <div class="col-md-offset-0 col-md-3">
-      <%= render "categories/_parts/catalog", { categories: @categories}%>
+      <%= render "categories/_parts/catalog", { categories: @categories} %>
     </div>
     <div class="col-md-offset-0 col-md-9">
       <div>
-        <%= render "categories/_parts/recommended_items", { recommended_items: @recommended_items}%>
+        <%= render "categories/_parts/recommended_items", { recommended_items: @recommended_items} %>
       </div>
       <br />
       <div>
-        <%= render "categories/_parts/newest_items", { newest_items: @newest_items}%>
+        <%= render "categories/_parts/newest_items", { newest_items: @newest_items} %>
       </div>
     </div>
   </div>

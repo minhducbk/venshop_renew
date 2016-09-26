@@ -21,10 +21,7 @@
     </div>
   </div>
   <hr/>
-  <% order_items.each do |order_item| %>
-    <%= render 'orders/_parts/order_item', {order_item: order_item} %>
-    <hr/>
-  <% end %>
+  <%= render partial: 'orders/_parts/order_item', collection: order_items %>
 
   <div class="row">
     <div class="col-md-offset-0 col-md-7">

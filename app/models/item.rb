@@ -17,6 +17,9 @@ class Item < ActiveRecord::Base
 
   paginates_per Settings.entries_per_page
 
+  scope :recommended, -> (limit) { order("updated_at desc").limit(limit) }
+  scope :newest, -> (limit) { order("created_at desc").limit(limit) }
+
   def cloudinary_credentials
     {
       cloud_name: ENV['cloud_name'],
@@ -24,9 +27,6 @@ class Item < ActiveRecord::Base
       api_secret: ENV['api_secret']
     }
   end
-
-  scope :recommended, -> (limit) { order("updated_at desc").limit(limit) }
-  scope :newest, -> (limit) { order("created_at desc").limit(limit) }
 
   private
 

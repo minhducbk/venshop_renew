@@ -1,22 +1,21 @@
-<% content_for :head do %>
-  <%= display_meta_tags site: 'Venshop', title: "#{@category.name}" %>
-  <%= display_meta_tags keywords: %w[venshop Venshop categories amazon ] << "#{@category.name}" %>
-<% end %>
-
+<%= render 'layouts/_parts/meta_tags', {title: @category.name,
+                                        keywords: [ @category.name, "categories"],
+                                        description: nil
+                                        } %>
 <div class="container">
   <div class="row">
     <div class="col-md-offset-0 col-md-4">
-      <%= link_to "Home", root_path%> > <%= @category.name%>
+      <%= link_to "Home", root_path%> > <%= @category.name %>
     </div>
   </div>
   <br />
   <div class="row">
     <div class="col-md-offset-0 col-md-3">
-      <%= render "categories/_parts/catalog", { categories: @categories}%>
+      <%= render "categories/_parts/catalog", { categories: @categories} %>
     </div>
     <div class="col-md-offset-0 col-md-9">
       <div>
-        <%= render "categories/_parts/category_items", { category: @category, items: @items}%>
+        <%= render "categories/_parts/category_items", { category: @category, category_items: @items} %>
       </div>
       <hr>
       <%= paginate @items %>

@@ -1,7 +1,6 @@
-<% content_for :head do %>
-  <%= display_meta_tags site: 'Venshop', title: "New item" %>
-  <%= display_meta_tags keywords: %w[venshop Venshop item amazon new] %>
-<% end %>
+<%= render 'layouts/_parts/meta_tags', {title: "New Item", keywords: ["new", "item"],
+                                        description: nil
+                                        } %>
 <div class="container">
   <div class="row">
     <div class="col-md-offset-0 col-md-4">
@@ -47,8 +46,8 @@
 
         <div class="field">
           <%= f.label :category%><br />
-          <%= f.select :category, @categories.map{|cate| cate.name},
-          autocomplete: "off", class: 'form-control' %>
+          <%= f.select :category, options_for_select(@categories.map{|cate| cate.name}),
+            autocomplete: "off", class: 'form-control' %>
         </div>
 
         <div class="field">
