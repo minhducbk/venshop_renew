@@ -2,11 +2,12 @@
 lock '3.6.1'
 
 set :application, 'venshop_Duc'
-set :repo_url, 'git@bitbucket.org:51300904/venshop.git'
+set :repo_url, 'git@gitlab.zigexn.vn:ducbm/Venshop_Duc.git'
 set :rbenv_ruby, '2.3.1'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, 'feature-batch-process'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/venshop_Duc'
