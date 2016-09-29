@@ -1,4 +1,4 @@
-<%= render 'layouts/_parts/meta_tags', {title: "Search Item", keywords: ["search", @key]
+<%= render 'layouts/_parts/meta_tags', {title: "Search Item", keywords: ["search", @key],
                                         description: nil
                                         } %>
 <div class = "container">
@@ -15,11 +15,11 @@
     <div class = "col-md-offset-0 col-md-9">
       <div>
         <%= render "searches/_parts/result_items",
-          { list_items: @list_items, key: @key} %>
+          { items: @items, key: @key} %>
       </div>
       <hr>
-      <%= paginate @list_items %>
-      <%= page_entries_info @list_items %>
+      <%= paginate @items %>
+      <%= page_entries_info @items %>
     </div>
   </div>
 </div>

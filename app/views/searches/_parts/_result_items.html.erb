@@ -5,8 +5,6 @@
 </div>
 <br />
 <div class = "recommened_list col-md-offset-2">
-  <% list_items.each do |item| %>
-    <%= render 'searches/_parts/item', {item: item} %>
-    <br />
-  <% end %>
+  <%= render partial: 'searches/_parts/item', collection: items %>
+  <br />
 </div>
