@@ -19,13 +19,8 @@
       <%= render "categories/_parts/catalog", { categories: @categories} %>
     </div>
     <div class="col-md-offset-0 col-md-9">
-      <div>
-        <%= render "categories/_parts/recommended_items", { recommended_items: @recommended_items} %>
-      </div>
-      <br />
-      <div>
-        <%= render "categories/_parts/newest_items", { newest_items: @newest_items} %>
-      </div>
+      <%= render "categories/_parts/recommended_items", { recommended_items: @recommended_items} %>
+      <%= render "categories/_parts/newest_items", { newest_items: @newest_items} %>
     </div>
   </div>
 </div>
