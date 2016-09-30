@@ -31,7 +31,7 @@
             <strong> Date: </strong> <%= @item.updated_at.strftime("%Y-%m-%d") %>
           </div>
           <div class="row">
-            <% unless user_signed_in? && (current_user.role == User.role_users[:admin])%>
+            <% unless user_signed_in? && current_user.admin? %>
               <% if @item.stock > 0 %>
                 <%= render "items/_parts/add_to_cart", {stock: @item.stock, item_id: @item.id,
                   hidden_quantity: nil} %>

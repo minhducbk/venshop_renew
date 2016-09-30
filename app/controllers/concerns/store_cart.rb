@@ -12,6 +12,17 @@ module StoreCart
     end
   end
 
+  def store_cart_session_to_db
+    unless current_user.is_admin?
+      cart = Cart.find_or_create_by(user_id: current_user.id)
+      if session[:cart].present?
+        old_cart = YAML.load(session[:cart]).to_h
+        copy_old_cart_to_cart_in_db(old_cart, cart)
+        session[:cart] = nil
+      end
+    end
+  end
+
   def copy_old_cart_to_cart_in_db(old_cart, cart)
     cart_items = old_cart.map do |item_id, quantity|
       cart_item = CartItem.find_by(item_id: item_id.to_i, cart_id: cart.id)

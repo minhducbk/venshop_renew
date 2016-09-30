@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     customer: 1
   }
 
-  def is_admin?
+  def admin?
     self.role == User.role_users[:admin]
   end
 end

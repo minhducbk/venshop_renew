@@ -1,4 +1,4 @@
-<%= render 'layouts/_parts/meta_tags', {title: "Cart", keywords: ["cart"],
+<%= render 'layouts/_parts/meta_tags', { title: "Cart", keywords: ["cart"],
                                         description: nil
                                         } %>
 <div class="container">
@@ -15,7 +15,7 @@
     <div class="col-md-offset-0 col-md-9">
       <div>
         <%= render "carts/_parts/cart_items", { cart_items: @cart_items, cart: @cart,
-          reload: @reload, cart_subtotal: @cart_subtotal} %>
+          reload: @reload, cart_subtotal: @cart_subtotal } %>
       </div>
     </div>
   </div>

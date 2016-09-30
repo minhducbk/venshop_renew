@@ -21,10 +21,8 @@
     </div>
   </div>
   <hr/>
-  <% cart_items.each do |cart_item| %>
-    <%= render 'carts/_parts/cart_item', {cart_subtotal: cart_subtotal, cart_item: cart_item} %>
-    <hr/>
-  <% end %>
+  <%= render partial: 'carts/_parts/cart_item', collection: cart_items, locals: {cart_subtotal: cart_subtotal} %>
+  <hr/>
 
   <div class="row">
     <div class="col-md-offset-0 col-md-7">

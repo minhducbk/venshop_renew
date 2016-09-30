@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    store_cart_cookie_to_db
+    store_cart_session_to_db
   end
 
   protected

@@ -8,13 +8,18 @@ module CartConcern
     }
   end
 
+  def store_cart_to_session(cart)
+    session[:cart] = cart.to_yaml
+  end
+
   def enough_stock_to_sale_and_reload_cart?(cart)
     if cart.class == Cart
       enough = enough_stock_to_sale_cart_in_db?(cart)
       cart.cart_items.reload
     else
       enough = enough_stock_to_sale_cart_in_cookie?(cart)
-      store_cart_to_cookie(cart)
+      #store_cart_to_cookie(cart)
+      store_cart_to_session(cart)
     end
     enough
   end

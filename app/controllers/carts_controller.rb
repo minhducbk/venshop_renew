@@ -37,7 +37,8 @@ class CartsController < ApplicationController
                                                         @cart_item_quantity
                                                         )
         @cart["#{@item.id}"] = @cart_item_quantity
-        store_cart_to_cookie(@cart)
+        # store_cart_to_cookie(@cart)
+        store_cart_to_session(@cart)
       end
       format.html {}
       format.js {}

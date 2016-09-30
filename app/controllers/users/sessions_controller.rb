@@ -10,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     super
     set_flash_message(:notice, :signed_in) if is_navigational_format?
-    store_cart_cookie_to_db
+    store_cart_session_to_db
   end
 
   def destroy

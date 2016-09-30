@@ -7,7 +7,8 @@ class CartItemsController < ApplicationController
     cart_quantity = params[:add_to_cart][:quantity].to_i
 
     if user_signed_in?
-      store_cart_cookie_to_db
+      #store_cart_cookie_to_db
+      store_cart_session_to_db
       cart_item = CartItem.find_by(item_id: item.id, cart_id: @cart.id)
       if cart_item.present?
         cart_item.update_columns(quantity: (cart_item.quantity + cart_quantity))
@@ -20,7 +21,8 @@ class CartItemsController < ApplicationController
       else
         @cart[item.id.to_s] = cart_quantity
       end
-      store_cart_to_cookie(@cart)
+      #store_cart_to_cookie(@cart)
+      store_cart_to_session(@cart)
     end
     redirect_to cart_path
   end
@@ -30,7 +32,8 @@ class CartItemsController < ApplicationController
       CartItem.find_by(item_id: params[:item_id].to_i, cart_id: @cart.id).destroy
     else
       @cart.delete(params[:item_id].to_s)
-      store_cart_to_cookie(@cart)
+      #store_cart_to_cookie(@cart)
+      store_cart_to_session(@cart)
     end
     redirect_to cart_path
   end
