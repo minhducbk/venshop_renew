@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
+
   resources :items, only: [:new, :show, :create]
 
   post '/cart_items' => 'cart_items#create', as: :cart_items

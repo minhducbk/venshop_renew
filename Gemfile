@@ -24,6 +24,8 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'meta-tags'
 gem 'thin'
+gem 'shareable'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'byebug'
