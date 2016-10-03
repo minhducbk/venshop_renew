@@ -1,6 +1,6 @@
 <div class="row">
   <div class="header_catalog col-md-offset-0 col-md-12 ">
-    <%= current_user.is_admin? ? "All orders" : "My orders" %>
+    <%= current_user.admin? ? "All orders" : "My orders" %>
   </div>
 </div>
 <div class="recommened_list col-md-offset-1 col-md-11">

@@ -2,7 +2,7 @@ module StoreCart
   extend ActiveSupport::Concern
 
   def store_cart_cookie_to_db
-    unless current_user.is_admin?
+    unless current_user.admin?
       cart = Cart.find_or_create_by(user_id: current_user.id)
       if cookies[:cart].present?
         old_cart = JSON.parse(cookies[:cart])
@@ -13,7 +13,7 @@ module StoreCart
   end
 
   def store_cart_session_to_db
-    unless current_user.is_admin?
+    unless current_user.admin?
       cart = Cart.find_or_create_by(user_id: current_user.id)
       if session[:cart].present?
         old_cart = YAML.load(session[:cart]).to_h

@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @list_orders = current_user.is_admin? ? Order.all.page(params[:page]) :
+    @list_orders = current_user.admin? ? Order.all.page(params[:page]) :
                    Order.where('user_id = ?', current_user.id).page(params[:page])
   end
 
