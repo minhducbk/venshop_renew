@@ -8,22 +8,24 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :items, only: [:new, :show, :create]
+  scope "(:locale)", locale: /en|vi|ja/ do
+    resources :items, only: [:new, :show, :create]
 
-  post '/cart_items' => 'cart_items#create', as: :cart_items
-  delete '/cart_items' => 'cart_items#destroy'
+    post '/cart_items' => 'cart_items#create', as: :cart_items
+    delete '/cart_items' => 'cart_items#destroy'
 
-  get '/carts/proceed_checkout' => 'carts#proceed_checkout', as: :proceed_checkout
-  get '/carts/' => 'carts#show', as: :cart
-  put '/carts/' => 'carts#update'
-  delete '/carts/' => 'carts#destroy'
+    get '/carts/proceed_checkout' => 'carts#proceed_checkout', as: :proceed_checkout
+    get '/carts/' => 'carts#show', as: :cart
+    put '/carts/' => 'carts#update'
+    delete '/carts/' => 'carts#destroy'
 
-  get '/order/create' => 'orders#create', as: :order_create
-  resources :orders, except: :create
+    get '/order/create' => 'orders#create', as: :order_create
+    resources :orders, except: :create
 
-  resources :searches, only: :index
+    resources :searches, only: :index
 
-  resources :categories
+    resources :categories
 
-  root 'categories#index'
+    root 'categories#index'
+  end
 end

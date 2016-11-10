@@ -32,6 +32,11 @@ group :development, :test do
   gem 'pry'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', '~> 2.0', require: false
+
+  gem 'fast_gettext', '~> 0.9.0'
+  gem 'gettext_i18n_rails', '~> 1.6.0'
+  gem 'gettext', '>=3.0.2', :require => false, :group => :development
+  gem 'ruby_parser', :require => false, :group => :development
 end
 
 group :development do
