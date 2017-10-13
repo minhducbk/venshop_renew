@@ -5,6 +5,7 @@
 </div>
 <br />
 <div class = "recommened_list col-md-offset-2">
-  <%= render partial: 'searches/_parts/item', collection: items %>
+  <%= render partial: 'searches/_parts/item', collection: items, 
+  			 locals: { locale: @locale } %>
   <br />
 </div>

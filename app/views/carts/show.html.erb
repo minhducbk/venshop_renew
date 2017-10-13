@@ -10,12 +10,12 @@
   <br />
   <div class="row">
     <div class="col-md-offset-0 col-md-3">
-      <%= render "categories/_parts/catalog", { categories: @categories} %>
+      <%= render "categories/_parts/catalog", { categories: @categories } %>
     </div>
     <div class="col-md-offset-0 col-md-9">
       <div>
         <%= render "carts/_parts/cart_items", { cart_items: @cart_items, cart: @cart,
-          reload: @reload, cart_subtotal: @cart_subtotal } %>
+          reload: @reload, cart_subtotal: @cart_subtotal, locale: @locale } %>
       </div>
     </div>
   </div>

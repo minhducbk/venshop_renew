@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003024050) do
+ActiveRecord::Schema.define(version: 20171003123739) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id",    limit: 4
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20161003024050) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.text     "name",        limit: 65535
     t.float    "price",       limit: 24
     t.integer  "category_id", limit: 4
     t.integer  "stock",       limit: 4
@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 20161003024050) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.integer  "role_user",              limit: 4
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
   end

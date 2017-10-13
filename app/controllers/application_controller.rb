@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_gettext_locale
   before_action :get_categories
   before_action :get_cart
+  before_action :get_locale
   helper_method :get_subtotal
 
   private
@@ -27,5 +28,10 @@ class ApplicationController < ActionController::Base
     list_items.inject(0) do |subtotal, list_item|
       subtotal + list_item[:item].price * list_item[:quantity]
     end.round(2)
+  end
+
+  def get_locale
+    @locale = params[:locale]
+    @locale ||= Rails.configuration.i18n.default_locale
   end
 end

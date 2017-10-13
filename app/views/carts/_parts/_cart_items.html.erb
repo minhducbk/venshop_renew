@@ -21,7 +21,7 @@
     </div>
   </div>
   <hr/>
-  <%= render partial: 'carts/_parts/cart_item', collection: cart_items, locals: {cart_subtotal: cart_subtotal} %>
+  <%= render partial: 'carts/_parts/cart_item', collection: cart_items, locals: {cart_subtotal: cart_subtotal, locale: @locale} %>
   <hr/>
 
   <div class="row">

@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="col-md-9 col-md-offset-0">
-    <%= link_to category_item.name, item_path( category_item.id) %>
+    <%= link_to category_item.name, item_path(locale, category_item.id) %>
     <br />
     <strong> Price </strong>: $<%= category_item.price%>
     <br />

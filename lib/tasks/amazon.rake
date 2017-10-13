@@ -1,27 +1,59 @@
-task vacuum: :environment do
+require 'amazon/ecs'
+task amazon: :environment do
   Settings.reload!
-  request = Vacuum.new('GB')
-  request.configure(
-    aws_access_key_id: ENV['aws_access_key_id'],
-    aws_secret_access_key: ENV['aws_secret_access_key'],
-    associate_tag: ENV['associate_tag']
-  )
-  request.version = Time.now.in_time_zone('Hanoi').strftime('%Y-%m-%d')
+  Amazon::Ecs.configure do |options|
+    options[:AWS_access_key_id] = ENV['aws_access_key_id']
+    options[:AWS_secret_key] = ENV['aws_secret_access_key']
+    options[:associate_tag] = ENV['associate_tag']
+  end
+
+  # To replace default options
+  # Amazon::Ecs.options = { ... }
+
+  # To override default options
+  res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
+
+  # Search Amazon Us
+  res = Amazon::Ecs.item_search('ruby', :country => 'us')
+
+  # Search all items, default search index: Books
+  res = Amazon::Ecs.item_search('ruby', :search_index => 'All')
+  puts "Ok here1"
+  # res.is_valid_request?
+  # res.has_error?
+  # res.error                                 # error message
+  # res.total_pages
+  # res.total_results
+  # res.item_page                             # current page no if :item_page option is provided
+  if res.blank?
+    puts "Blank"
+  else
+    puts "Present"
+    item = res.first_item 
+    item_attributes = item.get_element('ItemAttributes')
+    puts item_attributes.get('Title')
+    puts res.items.size
+    puts res.total_pages.size
+  end  
+  puts "Ok here2"
   categories = Category.all
 
   categories.each do |category|
     (1..10).each do |page|
-      begin
-        puts "donwloading #{category.name} SearchIndex in page #{page}"
-        response = request.item_search(
+      # begin
+        puts "Ok here"
+        puts category.keyword
+        response = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
+        request.item_search(
           query: {
             'SearchIndex' => category.name,
-            'Keywords' => category.keyword,
-            'ResponseGroup' => 'ItemAttributes,Images',
-            'ItemPage' => page
+            'Keywords' => category.keyword
+            # ,'ResponseGroup' => 'ItemAttributes,Images'
+            # ,'ItemPage' => page
           },
           persistent: true
         )
+        puts "Ok here1"
         hashed_products = response.to_h
         hashed_products['ItemSearchResponse']['Items']['Item'].each do |item|
           if item['ItemAttributes']['ListPrice'].present?
@@ -61,12 +93,11 @@ task vacuum: :environment do
               description: description
             )
             item_new.save(validate: false)
-            puts "Add new item #{item['ASIN']}"
           end
         end
-      rescue
-        puts "Error in donwloading item #{category.name} in page #{page}"
-      end
+      # rescue
+      #   puts "Error in donwloading item"
+      # end
     end
   end
 end

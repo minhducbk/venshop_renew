@@ -7,11 +7,11 @@
   </div>
   <div class="col-md-offset-0 col-md-6">
     <div>
-      <%= link_to cart_item[:item].name, item_path(cart_item[:item].id) %>
+      <%= link_to cart_item[:item].name, item_path(locale, cart_item[:item].id) %>
     </div>
     <br />
     <div>
-      <%= link_to "Delete", cart_items_path(item_id: cart_item[:item].id), method: :delete %>
+      <%= link_to "Delete", cart_items_path(locale, item_id: cart_item[:item].id), method: :delete %>
     </div>
   </div>
   <div class="col-md-offset-0 col-md-3">

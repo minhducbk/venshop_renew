@@ -26,6 +26,9 @@ gem 'meta-tags'
 gem 'thin'
 gem 'shareable'
 gem 'omniauth-facebook'
+gem 'amazon-ecs', '~> 2.5'
+gem 'mongoid'
+gem 'bson_ext'
 
 group :development, :test do
   gem 'byebug'

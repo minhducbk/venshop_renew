@@ -6,6 +6,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.includes(:items).find_by(id: params[:id])
-    @items = @category.items.page(params[:page])
+    @items = @category.items.page(params[:page])  
   end
 end

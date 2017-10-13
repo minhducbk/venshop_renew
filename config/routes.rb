@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  scope "(:locale)", locale: /en|vi|ja/ do
+  scope "(:locale)", locale: /en|vi/ do
     resources :items, only: [:new, :show, :create]
 
     post '/cart_items' => 'cart_items#create', as: :cart_items
