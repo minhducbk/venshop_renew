@@ -1,0 +1,30 @@
+<%= render 'layouts/_parts/meta_tags', {title: "Home",
+                                        keywords: ["Home", "categories"],
+                                        description: nil
+                                        } %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-0 col-md-4">
+      <%= link_to _("Home"), root_path%> >
+    </div>
+    <div class="col-md-offset-0 col-md-7">
+      <% flash.each do |key, value| %>
+       <div class="alert alert-success"><%= value %></div>
+    <% end %>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-offset-0 col-md-3">
+      <%= render "categories/_parts/catalog", { categories: @categories} %>
+    </div>
+    <div class="col-md-offset-0 col-md-9">
+      <div id="ads-division">
+        <%= render "advertisements/_parts/top_ads" %>
+       <!--  <script>
+          console.log(document.getElementById('ads-division').clientWidth.toString());
+        </script> -->
+      </div>
+    </div>
+  </div>
+</div>

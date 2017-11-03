@@ -1,0 +1,45 @@
+// Place all the styles related to the Advertisements controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.iframe-youtube{
+  width: 800px;
+  height: 600px;
+}
+
+.iframe-mp3{
+  width: 840px;
+  height: 600px;
+}
+
+.cover-iframe-mp3{
+  width: 848px;
+  height: 610px;
+  display:inline;
+  margin-left: 10px;
+}
+
+.iframe-standard{
+  width: 400px;
+  height: 400px;
+}
+
+.cover-iframe-standard{
+  width: 410px;
+  height: 410px;
+	display: inline-block;
+}
+
+#test1{
+	width: 560px;
+  height: 315px;
+}
+
+.tightly{
+	float: left;
+}
+
+.inline{
+	display: inline-block;
+}

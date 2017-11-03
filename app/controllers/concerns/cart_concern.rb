@@ -14,22 +14,22 @@ module CartConcern
 
   def enough_stock_to_sale_and_reload_cart?(cart)
     if cart.class == Cart
-      enough = enough_stock_to_sale_cart_in_db?(cart)
+      is_enough = enough_stock_to_sale_cart_in_db?(cart)
       cart.cart_items.reload
     else
-      enough = enough_stock_to_sale_cart_in_cookie?(cart)
+      is_enough = enough_stock_to_sale_cart_in_cookie?(cart)
       #store_cart_to_cookie(cart)
       store_cart_to_session(cart)
     end
-    enough
+    is_enough
   end
 
   def enough_stock_to_sale_cart_in_db?(cart)
-    enough = true
+    is_enough = true
     cart.cart_items.each do |cart_item|
       item = Item.find_by(id: cart_item.item_id)
       if item.stock < cart_item.quantity
-        enough = false
+        is_enough = false
         if item.stock.zero?
           cart_item.destroy
         else
@@ -37,15 +37,15 @@ module CartConcern
         end
       end
     end
-    enough
+    is_enough
   end
 
   def enough_stock_to_sale_cart_in_cookie?(cart)
-    enough = true
+    is_enough = true
     cart.each do |key, value|
       item = Item.find_by(id: key.to_i)
       if item.stock < value.to_i
-        enough = false
+        is_enough = false
         if item.stock.zero?
           cart.delete(key)
         else
@@ -53,7 +53,7 @@ module CartConcern
         end
       end
     end
-    enough
+    is_enough
   end
 
   def subtotal_after_update_quantity(cart_subtotal, item_price, old_quantity, new_quantity)

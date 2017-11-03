@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+  	binding.pry
     @category = Category.includes(:items).find_by(id: params[:id])
     @items = @category.items.page(params[:page])  
   end

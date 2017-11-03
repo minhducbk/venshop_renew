@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
     resources :categories
 
+    resources :advertisements, only: :index
+
     root 'categories#index'
   end
 end

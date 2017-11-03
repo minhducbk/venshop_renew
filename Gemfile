@@ -27,8 +27,9 @@ gem 'thin'
 gem 'shareable'
 gem 'omniauth-facebook'
 gem 'amazon-ecs', '~> 2.5'
-gem 'mongoid'
 gem 'bson_ext'
+# gem 'mongoid'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug'
