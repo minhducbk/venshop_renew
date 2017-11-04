@@ -1,0 +1,22 @@
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.2/ext/unf_ext
+/home/luffy/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20171104-14277-1pfxd5w.rb extconf.rb
+checking for main() in -lstdc++... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/extensions/x86_64-linux/2.3.0-static/unf_ext-0.0.7.2/mkmf.log
+
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.2/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.2/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+cc1plus: warning: command line option ‘-Wdeclaration-after-statement’ is valid for C/ObjC but not for C++
+cc1plus: warning: command line option ‘-Wimplicit-function-declaration’ is valid for C/ObjC but not for C++
+linking shared-object unf_ext.so
+
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.2/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.so ./.gem.20171104-14277-1av2vao

@@ -1,12 +1,12 @@
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   pool: 5
   timeout: 5000
   username: root
   password: 02091995
   encoding: utf8
-  host: 127.0.0.1
-  port: 3306
+  # host: 127.0.0.1
+  # port: 3306
 
 development:
   <<: *default
@@ -19,12 +19,12 @@ test:
   database: venshop_test
 
 production:
-  adapter: mysql2
+  adapter: postgresql
   pool: 5
   timeout: 5000
   encoding: utf8
-  host: 127.0.0.1
-  port: 3306
+  # host: 127.0.0.1
+  # port: 3306
   database: venshop_production
-  username: root
-  password: vagrant
+  # username: root
+  # password: 02091995

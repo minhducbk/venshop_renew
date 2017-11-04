@@ -1,0 +1,16 @@
+language: ruby
+script: 'bundle exec rake'
+rvm:
+  - 2.0.0
+  - 2.1.7
+  - 2.2.3
+  - 2.3.0
+  - ruby-head
+  - rbx-19mode
+  - jruby-19mode
+  - jruby-head
+
+matrix:
+  allow_failures:
+    - rvm: jruby-head
+    - rvm: ruby-head

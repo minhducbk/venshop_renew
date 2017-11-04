@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 gem 'rails', '4.2.6'
-gem 'mysql2'
 gem 'vacuum'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -30,17 +29,20 @@ gem 'amazon-ecs', '~> 2.5'
 gem 'bson_ext'
 # gem 'mongoid'
 gem 'rack-cors'
+gem 'fast_gettext', '~> 0.9.0'
+gem 'gettext_i18n_rails', '~> 1.6.0'
+gem 'gettext', '>=3.0.2', :require => false
+gem 'ruby_parser', :require => false
 
 group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', '~> 2.0', require: false
+  gem 'mysql2'
 
-  gem 'fast_gettext', '~> 0.9.0'
-  gem 'gettext_i18n_rails', '~> 1.6.0'
-  gem 'gettext', '>=3.0.2', :require => false, :group => :development
-  gem 'ruby_parser', :require => false, :group => :development
+  # gem 'gettext', '>=3.0.2', :require => false, :group => :development
+  # gem 'ruby_parser', :require => false, :group => :development
 end
 
 group :development do
@@ -50,4 +52,5 @@ end
 
 group :production do
   gem 'pg'
+  gem 'pry'
 end

@@ -1,0 +1,63 @@
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/bson_ext-1.5.1/ext/cbson
+/home/luffy/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20171104-14277-1adtbdq.rb extconf.rb
+checking for asprintf()... yes
+checking for ruby/st.h... yes
+checking for ruby/regex.h... yes
+checking for ruby/encoding.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/extensions/x86_64-linux/2.3.0-static/bson_ext-1.5.1/mkmf.log
+
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/bson_ext-1.5.1/ext/cbson
+make "DESTDIR=" clean
+
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/bson_ext-1.5.1/ext/cbson
+make "DESTDIR="
+compiling bson_buffer.c
+compiling encoding_helpers.c
+compiling cbson.c
+In file included from /home/luffy/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby.h:33:0,
+                 from cbson.c:23:
+cbson.c: In function ‘write_utf8’:
+/home/luffy/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/ruby.h:1001:5: warning: pointer targets in passing argument 1 of ‘check_string’ differ in signedness [-Wpointer-sign]
+     (!(RBASIC(str)->flags & RSTRING_NOEMBED) ? \
+     ^
+cbson.c:118:36: note: in expansion of macro ‘RSTRING_PTR’
+     result_t status = check_string(RSTRING_PTR(string), RSTRING_LEN(string),
+                                    ^
+In file included from cbson.c:65:0:
+encoding_helpers.h:26:10: note: expected ‘const unsigned char *’ but argument is of type ‘char *’
+ result_t check_string(const unsigned char* string, const int length,
+          ^
+cbson.c: In function ‘write_element’:
+cbson.c:303:20: warning: unused variable ‘values’ [-Wunused-variable]
+             VALUE* values;
+                    ^
+cbson.c:439:17: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+                 unsigned int seconds = NUM2UINT(
+                 ^
+cbson.c: In function ‘write_doc’:
+cbson.c:602:18: warning: implicit declaration of function ‘bson_buffer_get_max_size’ [-Wimplicit-function-declaration]
+     if (length > bson_buffer_get_max_size(buffer)) {
+                  ^
+cbson.c: In function ‘objectid_generate’:
+cbson.c:905:13: warning: implicit declaration of function ‘htonl’ [-Wimplicit-function-declaration]
+         t = htonl((int)time(NULL));
+             ^
+cbson.c:913:11: warning: implicit declaration of function ‘htons’ [-Wimplicit-function-declaration]
+     pid = htons(getpid());
+           ^
+cbson.c: In function ‘write_element’:
+cbson.c:168:31: warning: ignoring return value of ‘asprintf’, declared with attribute warn_unused_result [-Wunused-result]
+ #define INT2STRING(buffer, i) asprintf(buffer, "%d", i);
+                               ^
+cbson.c:318:17: note: in expansion of macro ‘INT2STRING’
+                 INT2STRING(&name, i);
+                 ^
+linking shared-object bson_ext/cbson.so
+
+current directory: /home/luffy/ruby_train/venshop/vendor/bundle/ruby/2.3.0/gems/bson_ext-1.5.1/ext/cbson
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cbson.so ./.gem.20171104-14277-ptl5fs/bson_ext
