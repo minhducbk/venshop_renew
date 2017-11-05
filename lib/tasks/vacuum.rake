@@ -12,7 +12,7 @@ task vacuum: :environment do
   categories.each do |category|
     (1..10).each do |page|
       begin
-        puts "donwloading #{category.name} SearchIndex in page #{page}"
+        puts "downloading #{category.name} SearchIndex in page #{page}"
         response = request.item_search(
           query: {
             'SearchIndex' => category.name,

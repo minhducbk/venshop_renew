@@ -13,21 +13,24 @@
 
 ActiveRecord::Schema.define(version: 20171021102441) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cart_items", force: :cascade do |t|
-    t.integer  "cart_id",    limit: 4
-    t.integer  "item_id",    limit: 4
-    t.integer  "quantity",   limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "cart_id"
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
   add_index "cart_items", ["item_id"], name: "index_cart_items_on_item_id", using: :btree
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
@@ -40,33 +43,33 @@ ActiveRecord::Schema.define(version: 20171021102441) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.text     "name",        limit: 65535
-    t.float    "price",       limit: 24
-    t.integer  "category_id", limit: 4
-    t.integer  "stock",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.text     "name"
+    t.float    "price"
+    t.integer  "category_id"
+    t.integer  "stock"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "amazon_id",   limit: 255
-    t.text     "description", limit: 65535
+    t.text     "description"
     t.string   "picture",     limit: 255
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
-    t.integer  "order_id",   limit: 4
-    t.integer  "item_id",    limit: 4
-    t.integer  "quantity",   limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "order_id"
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "status",     limit: 4
+    t.integer  "user_id"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,12 +77,12 @@ ActiveRecord::Schema.define(version: 20171021102441) do
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "test_tables", force: :cascade do |t|
-    t.integer "quantity", limit: 4
+    t.integer "quantity"
     t.string  "name",     limit: 255
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer  "role",                   limit: 4
+    t.integer  "role"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "email",                  limit: 255, default: "", null: false
@@ -87,7 +90,7 @@ ActiveRecord::Schema.define(version: 20171021102441) do
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
