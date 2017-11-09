@@ -20,7 +20,7 @@
 .byebug_history
 
 # Ignore application configuration
-/config/application.yml
+config/application.yml
 
 config/settings.local.yml
 config/settings/*.local.yml
