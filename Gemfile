@@ -27,20 +27,25 @@ gem 'shareable'
 gem 'omniauth-facebook'
 gem 'amazon-ecs', '~> 2.5'
 gem 'bson_ext'
-# gem 'mongoid'
 gem 'rack-cors'
 gem 'fast_gettext', '~> 0.9.0'
 gem 'gettext_i18n_rails', '~> 1.6.0'
 gem 'gettext', '>=3.0.2', :require => false
 gem 'ruby_parser', :require => false
+gem 'pry'
+gem 'pg'
+
+################## Group for mongodb #######################
+gem 'mongoid'
+gem 'simple_enum', '~> 2.3.0' , require: 'simple_enum/mongoid'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+############################################################
 
 group :development, :test do
   gem 'byebug'
-  gem 'pry'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', '~> 2.0', require: false
-  gem 'mysql2'
-
+  # gem 'mysql2'
   # gem 'gettext', '>=3.0.2', :require => false, :group => :development
   # gem 'ruby_parser', :require => false, :group => :development
 end
@@ -48,9 +53,9 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'annotate'
 end
 
 group :production do
-  gem 'pg'
-  gem 'pry'
+  # gem 'pg'
 end

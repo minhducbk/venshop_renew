@@ -1,17 +1,15 @@
-class Order
-  include Mongoid::Document 
-  include Mongoid::Timestamps
-  include SimpleEnum::Mongoid
-
-  field :id, type: Integer
-  field :user_id, type: Integer
-  field :status, type: Integer
-
+class Order < ActiveRecord::Base
   has_many :order_items, dependent: :destroy
   belongs_to :user
-  as_enum :order_status, New: 0, Prepare: 1, Shipping: 2, Done: 3,
-          Cancel: 4, new_group: [0, 1, 2 , 3], cancel_group: [4]
-
+  enum order_status: {
+    New: 0,
+    Prepare: 1,
+    Shipping: 2,
+    Done: 3,
+    Cancel: 4,
+    new_group: [0, 1, 2 , 3],
+    cancel_group: [4]
+  }
   paginates_per Settings.entries_per_page
 
   def after_cancel

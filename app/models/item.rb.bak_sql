@@ -1,16 +1,4 @@
-class Item
-  include Mongoid::Document 
-  include Mongoid::Timestamps
-
-  field :id, type: Integer
-  field :name, type: String
-  field :price, type: Integer
-  field :stock, type: Integer
-  field :description, type: String
-  field :picture, type: String
-  field :amazon_id, type: String
-  field :category_id, type: Integer
-
+class Item < ActiveRecord::Base
   belongs_to :category
   has_many :cart_items, dependent: :destroy
   has_many :order_items, dependent: :destroy

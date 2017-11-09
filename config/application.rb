@@ -1,6 +1,19 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+# require 'rails/all'
+require "rails"
+%w(
+  action_controller
+  action_mailer
+  active_resource
+  rails/test_unit
+).each do |framework|
+  begin
+    require "#{framework}/railtie"
+  rescue LoadError
+  end
+end
+
 #require "#{Rails.root}/app/workers/mail_worker.rb"
 
 # Require the gems listed in Gemfile, including any gems
@@ -23,7 +36,12 @@ module Venshop
     config.i18n.default_locale = :en
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
     config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
+    
+    # Config for using mongodb
+    config.generators do |g|
+      g.orm :mongoid
+    end
   end
 end

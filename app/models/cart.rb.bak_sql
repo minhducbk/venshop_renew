@@ -1,10 +1,4 @@
-class Cart
-  include Mongoid::Document 
-  include Mongoid::Timestamps
-
-  field :id, type: Integer
-  field :user_id, type: Integer
-
+class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items, dependent: :destroy
 

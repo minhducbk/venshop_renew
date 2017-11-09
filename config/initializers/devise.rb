@@ -6,16 +6,13 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'e72494586856b4917934763dbe98348f7222da2257262d8e931d20e65d23a5d25eafad1a5ec5f1f6f88f0ce360d921e047dc802a246a20fc53f6de8dcc046d83'
+  # config.secret_key = 'b37d22ff841150f9631fee6b6b0a321ce5b810c8fb4cf44805b686ce6e058b9a6044a2dd0322398b0c417b4736215361eebbc24f4cf5a8402f2ce02b9cc4ecd9'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
-  config.omniauth :facebook, "APP_ID", "APP_SECRET", scope: 'email', info_fields: 'email,name'
-
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -27,7 +24,8 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require 'devise/orm/mongoid'
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -110,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'ea1a9a54fc866d69afae1ab4714f67271a2fca62ac05d4018c68248eb4829517755f20b8443ee176b6d1d31246cfc5813b02797677b24c0169f8571e8bb862b8'
+  # config.pepper = '0feb3394079e1ca50c6b72a3e6148d5462d22ec83f9f3a36b663080eb3380218375c662d97a4dbc02de6ab1fbe3ea921e67552a46aeaa4903b73f124294c6a3f'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
